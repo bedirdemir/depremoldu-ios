@@ -1,0 +1,7 @@
+{
+  "status": true,
+  "httpStatus": 200,
+  "result": [
+    { "earthquake_id": "lossy-1", "provider": "kandilli", "title": "STRING MAG", "mag": "4.5", "depth": "7.5", "geojson": { "type": "Point", "coordinates": ["30.5", "39.5"] }, "date_time": "2026-09-11 23:24:22", "location_tz": "Europe/Istanbul" }
+  ]
+}
