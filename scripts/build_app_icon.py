@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Rebuild the 1024px app icon from the web project's 512px brand icon.
+"""Build the 1024px App Store icon from the product's 2048px brand icon.
 
-The web asset is a flat cream tile with the primary-colored seismograph
-stroke. This script classifies every pixel as stroke or background, scales the
-mask to 1024px and composites the two exact brand colors, which keeps the
-edges crisp for the App Store icon instead of blurring a raster upscale.
+Source: depremolduorg-nuxtjs/public/depremolduappicon.png (2048x2048 RGBA).
+The icon renders with the cream brand background; the alpha channel is
+flattened over that background so the App Store asset stays opaque.
 """
 
 from __future__ import annotations
@@ -15,16 +14,6 @@ from pathlib import Path
 from PIL import Image
 
 BACKGROUND = (252, 255, 231)
-STROKE = (235, 69, 95)
-
-
-def classify(pixel: tuple[int, int, int, int]) -> int:
-    red, green, blue, _ = pixel
-    axis = tuple(s - b for s, b in zip(STROKE, BACKGROUND))
-    delta = (red - BACKGROUND[0], green - BACKGROUND[1], blue - BACKGROUND[2])
-    axis_length_squared = sum(component * component for component in axis)
-    coverage = sum(d * a for d, a in zip(delta, axis)) / axis_length_squared
-    return 255 if coverage >= 0.35 else 0
 
 
 def main() -> int:
@@ -35,17 +24,12 @@ def main() -> int:
     args = parser.parse_args()
 
     source = Image.open(args.source).convert("RGBA")
-
-    mask = Image.new("L", source.size)
-    mask.putdata([classify(pixel) for pixel in source.getdata()])
-    mask = mask.resize((args.size, args.size), Image.Resampling.LANCZOS)
-
-    icon = Image.new("RGBA", (args.size, args.size), (*BACKGROUND, 255))
-    stroke_layer = Image.new("RGBA", (args.size, args.size), (*STROKE, 255))
-    icon = Image.composite(stroke_layer, icon, mask)
+    background = Image.new("RGBA", source.size, (*BACKGROUND, 255))
+    flattened = Image.alpha_composite(background, source).convert("RGB")
+    icon = flattened.resize((args.size, args.size), Image.Resampling.LANCZOS)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    icon.convert("RGB").save(args.output, format="PNG")
+    icon.save(args.output, format="PNG")
     print(f"Wrote {args.size}x{args.size} icon to {args.output}")
     return 0
 
