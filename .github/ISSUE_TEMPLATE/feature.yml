@@ -1,0 +1,24 @@
+name: Feature request
+description: Yeni yetenek öner
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Çözülecek problem
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Öneri
+    validations:
+      required: true
+  - type: textarea
+    id: parity
+    attributes:
+      label: Web paritesi / kapsam etkisi
+      description: Web'de karşılığı var mı? Backend/izin/gizlilik etkisi var mı?
+    validations:
+      required: false
