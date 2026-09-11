@@ -117,9 +117,10 @@ Fay:  Faults.json (paket) -> FaultDatasetJSONDecoder -> 12 MKMultiPolyline (4 g�
 
 - `AppDependencies` production zincirini (URLSession -> Kandilli service -> repository -> FilePersistenceStore) ve gömülü fay provider'ını kurar; hazırlık hatası crash yerine typed terminal durum olur.
 - `AppShellModel` üç sekmeyi (Son Depremler, Harita, Afet Bilinci), liste/konum sheet sunumunu ve Hakkında sheet'ini sahiplenir.
-- `AppRootView` sabit bir üst başlık çizer (solda marka, sağda Yenile/Hakkında); başlık TabView dışında olduğu için sekme geçişlerinde animasyon veya yeniden kurulum olmaz. Uygulama bilinçli olarak yalnız açık moddur.
-- `EarthquakeFeedFeatureModel` MainActor izole, monoton generation ile geç event'leri izole eder; harita 500 kaydın tamamını, liste ise ilk 200 kaydı 50'lik sayfalarla gösterir; refresh hatası içeriği düşürmez.
-- Sunum durumları ayrıdır: `loading` (içerik yok), `content` (fresh/stale + refresh state), `failure` (içerik yok). Sayım metni web'deki gibi `1-50 / 200 deprem` biçimindedir; sayfa, içerik küçülünce kendini sınırlar.
+- `AppRootView` sabit bir üst başlık çizer (solda marka, sağda Yenile/Hakkında); başlık TabView dışında olduğu için sekme geçişlerinde animasyon veya yeniden kurulum olmaz. Yenile düğmesi istek sürerken spinner gösterir ve yeni istek başlatmaz. Uygulama bilinçli olarak yalnız açık moddur.
+- Marka işareti (`BrandMark`) ürün ikonundaki sismograf hattından üretilen raster template görseldir; başlıkta ve Son Depremler sekmesinde kullanılır. iOS 26 cam sekme çubuğu SVG template görselleri hatalı çizdiği için raster tercih edildi (ADR-0010).
+- `EarthquakeFeedFeatureModel` MainActor izole, monoton generation ile geç event'leri izole eder; harita 500 kaydın tamamını, liste ilk 200 kaydı tek sürekli akışta gösterir; refresh hatası içeriği düşürmez.
+- Sunum durumları ayrıdır: `loading` (içerik yok), `content` (fresh/stale + refresh state), `failure` (içerik yok). Refresh sırasında içerik korunur ve `refreshState == .refreshing` üst başlıktaki Yenile düğmesinde spinner olarak görünür; sayaç `200 deprem` biçimindedir.
 - `EarthquakeMapFeatureModel` fay veri setini ilk görünümde bir kez yükler; katman varsayılan kapalıdır (web'deki başlangıç davranışı) ve chip ile açılır.
 - Göreli zamanlar 30 saniyelik tick ile canlı tutulur.
 
