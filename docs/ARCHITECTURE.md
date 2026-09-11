@@ -117,8 +117,9 @@ Fay:  Faults.json (paket) -> FaultDatasetJSONDecoder -> 12 MKMultiPolyline (4 g�
 
 - `AppDependencies` production zincirini (URLSession -> Kandilli service -> repository -> FilePersistenceStore) ve gömülü fay provider'ını kurar; hazırlık hatası crash yerine typed terminal durum olur.
 - `AppShellModel` üç sekmeyi (Son Depremler, Harita, Afet Bilinci), liste/konum sheet sunumunu ve Hakkında sheet'ini sahiplenir.
-- `EarthquakeFeedFeatureModel` MainActor izole, monoton generation ile geç event'leri izole eder; liste 200, harita 500 kaydı gösterir; refresh hatası içeriği düşürmez.
-- Sunum durumları ayrıdır: `loading` (içerik yok), `content` (fresh/stale + refresh state), `failure` (içerik yok). Sayım metni web'deki gibi `1-200 / 200 deprem` biçimindedir.
+- `AppRootView` sabit bir üst başlık çizer (solda marka, sağda Yenile/Hakkında); başlık TabView dışında olduğu için sekme geçişlerinde animasyon veya yeniden kurulum olmaz. Uygulama bilinçli olarak yalnız açık moddur.
+- `EarthquakeFeedFeatureModel` MainActor izole, monoton generation ile geç event'leri izole eder; harita 500 kaydın tamamını, liste ise ilk 200 kaydı 50'lik sayfalarla gösterir; refresh hatası içeriği düşürmez.
+- Sunum durumları ayrıdır: `loading` (içerik yok), `content` (fresh/stale + refresh state), `failure` (içerik yok). Sayım metni web'deki gibi `1-50 / 200 deprem` biçimindedir; sayfa, içerik küçülünce kendini sınırlar.
 - `EarthquakeMapFeatureModel` fay veri setini ilk görünümde bir kez yükler; katman varsayılan kapalıdır (web'deki başlangıç davranışı) ve chip ile açılır.
 - Göreli zamanlar 30 saniyelik tick ile canlı tutulur.
 
@@ -127,7 +128,8 @@ Fay:  Faults.json (paket) -> FaultDatasetJSONDecoder -> 12 MKMultiPolyline (4 g�
 - `EarthquakeMapBridge` `UIViewRepresentable`; annotation'lar yalnız veri kimliği değiştiğinde yeniden kurulur.
 - Marker: web `circleMarker` görünümü; sınıf başına yarıçap 5/7/9/11 pt, ~2.5 pt siyah kenar, seçilide 1.35× ölçek.
 - Fay katmanı güven × oran başına en fazla 12 `MKMultiPolyline` olarak eklenir; zoom değişiminde renderer genişlikleri web formülüyle güncellenir.
-- Seçim iki yönlüdür: harita dokunuşu alt kartı açar, kart kapatıldığında annotation seçimi kalkar.
+- Seçimde sistem callout'u kullanılır: popup noktanın üstünde açılır ve SwiftUI ile çizilen bölge/zaman/derinlik/tarih/koordinat içeriğini taşır; ayrı bir detay bağlantısı yoktur. İçerik Dynamic Type'tan bağımsız sabit boyutta tutulur (harita üstü yardımcı yüzey).
+- Koordinatlar `GeoCoordinate.displayText` ile 5 ondalığa kırpılıp sondaki sıfırlardan arındırılır; kayan nokta artıkları gösterilmez.
 
 ## Concurrency
 
@@ -150,7 +152,7 @@ Fay:  Faults.json (paket) -> FaultDatasetJSONDecoder -> 12 MKMultiPolyline (4 g�
 - Magnitüd sınıflandırması renk + etiketle birlikte verilir; renk tek başına anlam taşımaz.
 - Liste satırları VoiceOver'da tek öğe olarak okunur (magnitüd, bölge, zaman, derinlik) ve "Konumunu haritada açar" ipucu taşır.
 - Open Sans fontları Dynamic Type ile ölçeklenir (`Font.custom(_:size:relativeTo:)`).
-- Koyu mod ayrı paletle desteklenir; açık mod web görünümünün birebiridir.
+- Uygulama yalnız açık moddur (`UIUserInterfaceStyle = Light`); web görünümü sabit korunur.
 - En az 44×44 pt dokunma hedefleri korunur.
 
 ## Web paritesi doğrulaması

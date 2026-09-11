@@ -1,12 +1,9 @@
 import SwiftUI
 import MapKit
-import DepremOlduDomain
 
 struct EarthquakeMapScreen: View {
     @Bindable var feedModel: EarthquakeFeedFeatureModel
     @Bindable var mapModel: EarthquakeMapFeatureModel
-    let onShowAbout: () -> Void
-    let onShowLocation: (Earthquake) -> Void
 
     private var items: [EarthquakeMapItem] {
         feedModel.mapEarthquakes.compactMap { earthquake in
@@ -15,74 +12,35 @@ struct EarthquakeMapScreen: View {
         }
     }
 
-    private var selectedItem: EarthquakeMapItem? {
-        guard let selectedID = mapModel.selectedEarthquakeID else { return nil }
-        return items.first { $0.id == selectedID }
-    }
-
     var body: some View {
-        NavigationStack {
-            ZStack {
-                EarthquakeMapBridge(
-                    items: items,
-                    faultDataset: mapModel.faultDataset,
-                    showsFaultLines: mapModel.showsFaultLines,
-                    selectedEarthquakeID: $mapModel.selectedEarthquakeID
-                )
-                .ignoresSafeArea(edges: .bottom)
+        ZStack {
+            EarthquakeMapBridge(
+                items: items,
+                faultDataset: mapModel.faultDataset,
+                showsFaultLines: mapModel.showsFaultLines
+            )
+            .ignoresSafeArea(edges: .bottom)
 
-                if let content = feedModel.content {
-                    if content.refreshFailure != nil {
-                        failureBanner(content.refreshFailure)
-                    }
-                } else if case let .failure(failure) = feedModel.state {
-                    ErrorStateView(failure: failure) {
-                        Task { await feedModel.retry() }
-                    }
-                } else if feedModel.mapEarthquakes.isEmpty {
-                    ProgressView()
-                        .controlSize(.large)
-                        .tint(AppColor.primary)
-                        .padding(16)
-                        .appGlassSurface(cornerRadius: 12)
-                        .accessibilityLabel("Depremler yükleniyor")
+            if let content = feedModel.content {
+                if content.refreshFailure != nil {
+                    failureBanner(content.refreshFailure)
                 }
-            }
-            .overlay(alignment: .top) {
-                mapHeader
-            }
-            .overlay(alignment: .bottom) {
-                if let selectedItem {
-                    EarthquakeMapSelectionCard(
-                        item: selectedItem,
-                        relativeTime: feedModel.relativeTime(for: selectedItem.earthquake),
-                        onClose: { mapModel.selectedEarthquakeID = nil },
-                        onDetails: { onShowLocation(selectedItem.earthquake) }
-                    )
+            } else if case let .failure(failure) = feedModel.state {
+                ErrorStateView(failure: failure) {
+                    Task { await feedModel.retry() }
                 }
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    BrandTitle()
-                }
-                ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button {
-                        Task { await feedModel.refresh() }
-                    } label: {
-                        Label("Yenile", systemImage: "arrow.clockwise")
-                    }
-                    .disabled(feedModel.content?.refreshState == .refreshing)
-
-                    Button {
-                        onShowAbout()
-                    } label: {
-                        Label("Hakkında", systemImage: "info.circle")
-                    }
-                }
+            } else if feedModel.mapEarthquakes.isEmpty {
+                ProgressView()
+                    .controlSize(.large)
+                    .tint(AppColor.primary)
+                    .padding(16)
+                    .appGlassSurface(cornerRadius: 12)
+                    .accessibilityLabel("Depremler yükleniyor")
             }
         }
-        .tint(AppColor.primary)
+        .overlay(alignment: .top) {
+            mapHeader
+        }
         .task {
             feedModel.loadIfNeeded()
             mapModel.loadFaultsIfNeeded()

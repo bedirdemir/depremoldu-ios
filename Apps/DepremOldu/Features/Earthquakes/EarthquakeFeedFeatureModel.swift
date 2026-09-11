@@ -73,8 +73,11 @@ final class EarthquakeFeedFeatureModel {
     private var activeGeneration: UInt64?
     private var loadTask: Task<Void, Never>?
 
+    static let listPageSize = 50
+
     private(set) var state: State = .idle
     private(set) var relativeTimeTick = Date.distantPast
+    private(set) var currentPage = 1
 
     init(
         repository: any EarthquakeRepositoryProviding,
@@ -108,12 +111,46 @@ final class EarthquakeFeedFeatureModel {
         content?.earthquakes.count ?? 0
     }
 
-    var displayedCount: Int {
+    var listTotalCount: Int {
         min(totalCount, EarthquakeFeedLimits.listCount)
     }
 
+    var listPageCount: Int {
+        max(1, (listTotalCount + Self.listPageSize - 1) / Self.listPageSize)
+    }
+
+    var isFirstPage: Bool {
+        currentPage == 1
+    }
+
+    var isLastPage: Bool {
+        currentPage >= listPageCount
+    }
+
+    var paginatedEarthquakes: [Earthquake] {
+        let all = listEarthquakes
+        let start = (currentPage - 1) * Self.listPageSize
+        guard start < all.count else { return [] }
+        return Array(all[start ..< min(start + Self.listPageSize, all.count)])
+    }
+
     var countSummary: String {
-        totalCount == 0 ? "0 deprem" : "1-\(displayedCount) / \(totalCount) deprem"
+        guard listTotalCount > 0 else { return "0 deprem" }
+        let start = (currentPage - 1) * Self.listPageSize + 1
+        let end = min(currentPage * Self.listPageSize, listTotalCount)
+        return "\(start)-\(end) / \(listTotalCount) deprem"
+    }
+
+    func goToPage(_ page: Int) {
+        currentPage = min(max(1, page), listPageCount)
+    }
+
+    func nextPage() {
+        goToPage(currentPage + 1)
+    }
+
+    func previousPage() {
+        goToPage(currentPage - 1)
     }
 
     func relativeTime(for earthquake: Earthquake) -> String {
@@ -195,6 +232,7 @@ final class EarthquakeFeedFeatureModel {
                     refreshFailure: nil
                 )
             )
+            clampCurrentPage()
 
         case let .refreshing(stale):
             if let stale {
@@ -237,6 +275,10 @@ final class EarthquakeFeedFeatureModel {
         } else {
             state = .failure(failure)
         }
+    }
+
+    private func clampCurrentPage() {
+        currentPage = min(max(1, currentPage), listPageCount)
     }
 
     private func makeGeneration() -> UInt64 {

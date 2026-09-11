@@ -31,6 +31,8 @@ Proje tazeliği: `make project-check`, `scripts/generate_xcodeproj.py` çıktıs
 ## Kritik test matrisi
 
 - Magnitüd sınırları: 3.99/4.0/4.99/5.0/6.49/6.5.
+- Sayfalama: 50'lik dilimler, sayfa sayısı, sınır kırpma, refresh sonrası küçülen içerikte sayfa düzeltmesi, `1-50 / 200 deprem` sayımı.
+- Koordinat biçimi: kayan nokta artıkları temizlenir (`39.160000000000004` -> `39.16`).
 - Göreli zaman sınırları: 44/45/89/90 sn, 44/45/89/90 dk, 21/22/35/36/25/26/45/46 gün, 319/320/547/548 gün, gelecek zaman.
 - Eksik/bozuk alanlar: `mag` yok, `depth` yok, koordinat dizisi bozuk, `result` nesne, JSON bozuk, `mag` string.
 - Saat dilimi: `Europe/Istanbul` ile epoch dönüşümü; geçersiz saat dilimi fallback'i.

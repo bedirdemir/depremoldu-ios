@@ -205,6 +205,14 @@ struct GeoCoordinateTests {
         #expect(coordinate.longitude == 37.5222)
     }
 
+    @Test("Display text trims floating point artifacts")
+    func displayText() throws {
+        #expect(try #require(GeoCoordinate(latitude: 39.16, longitude: 38.45)).displayText == "39.16, 38.45")
+        #expect(try #require(GeoCoordinate(latitude: 39.160000000000004, longitude: 38.45)).displayText == "39.16, 38.45")
+        #expect(try #require(GeoCoordinate(latitude: 36.0, longitude: 26.0)).displayText == "36, 26")
+        #expect(try #require(GeoCoordinate(latitude: 37.5222, longitude: 25.5299133227)).displayText == "37.5222, 25.52991")
+    }
+
     @Test("Non-finite or out-of-range values are rejected")
     func rejection() {
         #expect(GeoCoordinate(latitude: .nan, longitude: 30) == nil)
