@@ -1,0 +1,728 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 71;
+	objects = {
+
+/* Begin PBXBuildFile section */
+445E16A0F4519CE5684239B2 /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0E6FF7BBFF8B5065E0B5E7 /* AppDependencies.swift */; };
+C4CEA85C221881EA44F9CC87 /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB7A4D8ED8CBF7AAA5063FD /* AppRootView.swift */; };
+17F8229CCFA1C81FB5BF1DA2 /* AppShellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A38D1E9BE83BCA5AF064A /* AppShellModel.swift */; };
+6D53A9F919E83F4F321DB31C /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8526A5B4CFB34DA3A8B11F /* AppStyle.swift */; };
+3EC413EADCBEE8DC766AD60C /* DepremOlduApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA10E979D07DD668A04B3C4 /* DepremOlduApp.swift */; };
+E3084D73511F4821F1233007 /* FeedCacheDirectoryPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A787F54F40FECCA5CE8E3C /* FeedCacheDirectoryPolicy.swift */; };
+1796B5355BEF2C095F648428 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F9F8D1FB98A626C52B6A06 /* SafariView.swift */; };
+69B4C3963BDFB3BC290B33AB /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F9CB4B7BFE598DCD8D002E /* AboutView.swift */; };
+993B050FFA5792D1EB71D841 /* AwarenessContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86191898ED577431AF82A157 /* AwarenessContent.swift */; };
+EA6383764FBAD53941C11EBB /* AwarenessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2BAC06F4DE9ADE67B700A9 /* AwarenessView.swift */; };
+CC5D2C428C560DB1302360BB /* EarthquakeFeedFeatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA523FCF77741D38E8C3C53 /* EarthquakeFeedFeatureModel.swift */; };
+1D24D28737C0136E6A487B4B /* EarthquakeLegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF94D347496747E8DA7591 /* EarthquakeLegendView.swift */; };
+B868C89E622BBA115D528FF2 /* EarthquakeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FCD8A77F7F25E5A0FC339 /* EarthquakeListView.swift */; };
+CDC47DBFA50B218A07BB4AE0 /* EarthquakeLocationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949A8EC1A5D4F79A324D7AA /* EarthquakeLocationSheet.swift */; };
+0296F5766DE6EC72169BB7A4 /* EarthquakeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B9412A0AF15C811079891 /* EarthquakeRowView.swift */; };
+9781DADF9C469C78681E7CBA /* EarthquakeMapBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54907C9989869151662466B9 /* EarthquakeMapBridge.swift */; };
+827886A887598AA1B71CE805 /* EarthquakeMapFeatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85D7073FAC871F5345A6EE /* EarthquakeMapFeatureModel.swift */; };
+B399A26DF907DD25574136B5 /* EarthquakeMapOverlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455E2477974F8948EFA47266 /* EarthquakeMapOverlays.swift */; };
+37F70B963F00E5BC538CD4F8 /* EarthquakeMapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA8034490251B461DEF9A94 /* EarthquakeMapScreen.swift */; };
+9E02F781E6F8AF1B37C0AC91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 934A48693E435CFED617FD13 /* Assets.xcassets */; };
+78B2946A2825614E0DD447A5 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80E8B56FAE26874F307169ED /* OpenSans-Bold.ttf */; };
+FE0A4EA99C941AC30EF7F582 /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17796BE300E4ED986172FB2C /* OpenSans-Medium.ttf */; };
+6D59801EC5F7D0C35C068CD9 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17A2CD658C4E4DBC1E6CD92E /* OpenSans-Regular.ttf */; };
+CC148260F2B1FE316A573844 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1794A928CFD397A9BF701794 /* OpenSans-SemiBold.ttf */; };
+06CFF3EE9EC1B54929F4D901 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = FFB0C385D6F470EA25D0F7F1 /* OFL.txt */; };
+130A2F1E80EF81EF87BCE308 /* Faults.json in Resources */ = {isa = PBXBuildFile; fileRef = B908F89242872436068CFADB /* Faults.json */; };
+4B7A1F0AC886B532CD4D1749 /* DepremOlduAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041C8778C301D526EF4E94AE /* DepremOlduAppTests.swift */; };
+681ADD4A3E42008D3100A1A0 /* DepremOlduAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B1AB0561C4D3EAB194726F /* DepremOlduAppUITests.swift */; };
+7458DFB62EB2227F505694BA /* DepremOlduDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 80770A7EBFE6C49750B0BD2A /* DepremOlduDomain */; };
+788E6BCA3318B941E6F19FBE /* DepremOlduFaults in Frameworks */ = {isa = PBXBuildFile; productRef = 8A069E8E8F833C4A8E48CD8B /* DepremOlduFaults */; };
+39B8CA71E825408EB49A2C86 /* DepremOlduNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = B8442C55CD0FC4CFF376001B /* DepremOlduNetworking */; };
+E0FF69F19B5E6B0BAFBE0E78 /* DepremOlduPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = 513ADBE3C81CE7328071F771 /* DepremOlduPersistence */; };
+D71ACFE6EEC0CD26C7F00752 /* DepremOlduRepository in Frameworks */ = {isa = PBXBuildFile; productRef = CE756074966665FAD844C794 /* DepremOlduRepository */; };
+01CE1D9B9B44E1BD9705620A /* DepremOlduDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 46FB6A28E150E453DAA5AC28 /* DepremOlduDomain */; };
+A4AA06B9613D0C2826867C9C /* DepremOlduFaults in Frameworks */ = {isa = PBXBuildFile; productRef = E351A15F7CD38C036245EB9C /* DepremOlduFaults */; };
+7B0DC15A77710C853E599416 /* DepremOlduNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 43670667CCA2311EFC5FB768 /* DepremOlduNetworking */; };
+60CF026968EED3E2672BF25D /* DepremOlduPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = C71AD05118ABDDE546338604 /* DepremOlduPersistence */; };
+D46B556BD367176CBCE666D5 /* DepremOlduRepository in Frameworks */ = {isa = PBXBuildFile; productRef = 817F1AF5A6F022D72B72B215 /* DepremOlduRepository */; };
+C8A2959095395E6D7DF3C3D8 /* DepremOlduTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 1E11B51A0321804757E55155 /* DepremOlduTestSupport */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+B808BA2147EBCFE87FB04163 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 778799D1FB0081DF77469346;
+			remoteInfo = DepremOldu;
+		};
+		8C9BE257A1E4F9FA69887CD6 = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595;
+			proxyType = 1;
+			remoteGlobalIDString = 778799D1FB0081DF77469346;
+			remoteInfo = DepremOldu;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+211373AE5379DB6A7DB9905F /* DepremOldu.app */ = {isa = PBXFileReference; explicitFileType = "wrapper.application"; includeInIndex = 0; path = DepremOldu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+6113FCC6B2E641A6E2CFCD59 /* DepremOlduAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = "wrapper.cfbundle"; includeInIndex = 0; path = DepremOlduAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+FEC372FE67838C7B77323CF0 /* DepremOlduAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = "wrapper.cfbundle"; includeInIndex = 0; path = DepremOlduAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+6A0E6FF7BBFF8B5065E0B5E7 /* AppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; };
+DCB7A4D8ED8CBF7AAA5063FD /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
+1F0A38D1E9BE83BCA5AF064A /* AppShellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShellModel.swift; sourceTree = "<group>"; };
+1C8526A5B4CFB34DA3A8B11F /* AppStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
+6FA10E979D07DD668A04B3C4 /* DepremOlduApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepremOlduApp.swift; sourceTree = "<group>"; };
+06A787F54F40FECCA5CE8E3C /* FeedCacheDirectoryPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCacheDirectoryPolicy.swift; sourceTree = "<group>"; };
+C8F9F8D1FB98A626C52B6A06 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+97F9CB4B7BFE598DCD8D002E /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+86191898ED577431AF82A157 /* AwarenessContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwarenessContent.swift; sourceTree = "<group>"; };
+2F2BAC06F4DE9ADE67B700A9 /* AwarenessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwarenessView.swift; sourceTree = "<group>"; };
+BCA523FCF77741D38E8C3C53 /* EarthquakeFeedFeatureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeFeedFeatureModel.swift; sourceTree = "<group>"; };
+FAEF94D347496747E8DA7591 /* EarthquakeLegendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeLegendView.swift; sourceTree = "<group>"; };
+673FCD8A77F7F25E5A0FC339 /* EarthquakeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeListView.swift; sourceTree = "<group>"; };
+4949A8EC1A5D4F79A324D7AA /* EarthquakeLocationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeLocationSheet.swift; sourceTree = "<group>"; };
+627B9412A0AF15C811079891 /* EarthquakeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeRowView.swift; sourceTree = "<group>"; };
+54907C9989869151662466B9 /* EarthquakeMapBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeMapBridge.swift; sourceTree = "<group>"; };
+DD85D7073FAC871F5345A6EE /* EarthquakeMapFeatureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeMapFeatureModel.swift; sourceTree = "<group>"; };
+455E2477974F8948EFA47266 /* EarthquakeMapOverlays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeMapOverlays.swift; sourceTree = "<group>"; };
+3FA8034490251B461DEF9A94 /* EarthquakeMapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeMapScreen.swift; sourceTree = "<group>"; };
+934A48693E435CFED617FD13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+80E8B56FAE26874F307169ED /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSans-Bold.ttf; sourceTree = "<group>"; };
+17796BE300E4ED986172FB2C /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSans-Medium.ttf; sourceTree = "<group>"; };
+17A2CD658C4E4DBC1E6CD92E /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSans-Regular.ttf; sourceTree = "<group>"; };
+1794A928CFD397A9BF701794 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OpenSans-SemiBold.ttf; sourceTree = "<group>"; };
+FFB0C385D6F470EA25D0F7F1 /* OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+B908F89242872436068CFADB /* Faults.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Faults.json; sourceTree = "<group>"; };
+9EED39E26E4269851FEDADB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+041C8778C301D526EF4E94AE /* DepremOlduAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepremOlduAppTests.swift; sourceTree = "<group>"; };
+92B1AB0561C4D3EAB194726F /* DepremOlduAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepremOlduAppUITests.swift; sourceTree = "<group>"; };
+B825DD032B31B257BDDC16FA /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
+30373D58AEEDA4A2131F96A0 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+FA71D9D812985025E7C53FC7 /* Local.example.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.example.xcconfig; sourceTree = "<group>"; };
+BE1790B90ECBDFD5FADE3560 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+9DE0D7CD588F9B4C0F23BDAB /* Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Test.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+504E557AD0031209E49139EB = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7458DFB62EB2227F505694BA,
+				788E6BCA3318B941E6F19FBE,
+				39B8CA71E825408EB49A2C86,
+				E0FF69F19B5E6B0BAFBE0E78,
+				D71ACFE6EEC0CD26C7F00752,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+3AB7FE7BA6E0DBC4635B1562 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01CE1D9B9B44E1BD9705620A,
+				A4AA06B9613D0C2826867C9C,
+				7B0DC15A77710C853E599416,
+				60CF026968EED3E2672BF25D,
+				D46B556BD367176CBCE666D5,
+				C8A2959095395E6D7DF3C3D8,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+72F75C82025A9D84E745B13D = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+BB5D8E872B7D45C0EFD70B64 /* root */ = {
+			isa = PBXGroup;
+			children = (
+				74C0354F987B4FC0FDE2C044,
+				83561FE31DE352CF1AA55642,
+				994E9D11DEC06D94D5021578,
+				2F3A6B1E78F896718625FF06,
+			);
+			sourceTree = "<group>";
+		};
+994E9D11DEC06D94D5021578 /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				05E27298C3151F3DA09A5EE8,
+			);
+			path = Apps;
+			sourceTree = "<group>";
+		};
+05E27298C3151F3DA09A5EE8 /* DepremOldu */ = {
+			isa = PBXGroup;
+			children = (
+				5596337F85E5DEDCFA86CAD9,
+				9EED39E26E4269851FEDADB5,
+				A63BB9500FACB4F8313FD014,
+				C6E329DFA4D61C5E75F8B455,
+			);
+			path = DepremOldu;
+			sourceTree = "<group>";
+		};
+A63BB9500FACB4F8313FD014 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				06A787F54F40FECCA5CE8E3C,
+				1C8526A5B4CFB34DA3A8B11F,
+				1F0A38D1E9BE83BCA5AF064A,
+				6A0E6FF7BBFF8B5065E0B5E7,
+				6FA10E979D07DD668A04B3C4,
+				C8F9F8D1FB98A626C52B6A06,
+				DCB7A4D8ED8CBF7AAA5063FD,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+C6E329DFA4D61C5E75F8B455 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				3F9B792FFF050751F290F78C,
+				642ADC919C66A8147BDDE2F6,
+				7A9DF98ECD1E769DE9777B59,
+				9311CEFC1C57A65C423550AB,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+9311CEFC1C57A65C423550AB /* About */ = {
+			isa = PBXGroup;
+			children = (
+				97F9CB4B7BFE598DCD8D002E,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+642ADC919C66A8147BDDE2F6 /* Awareness */ = {
+			isa = PBXGroup;
+			children = (
+				2F2BAC06F4DE9ADE67B700A9,
+				86191898ED577431AF82A157,
+			);
+			path = Awareness;
+			sourceTree = "<group>";
+		};
+7A9DF98ECD1E769DE9777B59 /* Earthquakes */ = {
+			isa = PBXGroup;
+			children = (
+				4949A8EC1A5D4F79A324D7AA,
+				627B9412A0AF15C811079891,
+				673FCD8A77F7F25E5A0FC339,
+				BCA523FCF77741D38E8C3C53,
+				FAEF94D347496747E8DA7591,
+			);
+			path = Earthquakes;
+			sourceTree = "<group>";
+		};
+3F9B792FFF050751F290F78C /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				3FA8034490251B461DEF9A94,
+				455E2477974F8948EFA47266,
+				54907C9989869151662466B9,
+				DD85D7073FAC871F5345A6EE,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+5596337F85E5DEDCFA86CAD9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				934A48693E435CFED617FD13,
+				97E5C4E04C4336BCDB75B7AB,
+				B908F89242872436068CFADB,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+97E5C4E04C4336BCDB75B7AB /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				17796BE300E4ED986172FB2C,
+				1794A928CFD397A9BF701794,
+				17A2CD658C4E4DBC1E6CD92E,
+				80E8B56FAE26874F307169ED,
+				FFB0C385D6F470EA25D0F7F1,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+83561FE31DE352CF1AA55642 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				30373D58AEEDA4A2131F96A0,
+				9DE0D7CD588F9B4C0F23BDAB,
+				B825DD032B31B257BDDC16FA,
+				BE1790B90ECBDFD5FADE3560,
+				FA71D9D812985025E7C53FC7,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+74C0354F987B4FC0FDE2C044 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B7E2821AFC230A2C692849B3,
+				C657FC05349FC7FE719871A5,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+C657FC05349FC7FE719871A5 /* DepremOlduAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				041C8778C301D526EF4E94AE,
+			);
+			path = DepremOlduAppTests;
+			sourceTree = "<group>";
+		};
+B7E2821AFC230A2C692849B3 /* DepremOlduAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				92B1AB0561C4D3EAB194726F,
+			);
+			path = DepremOlduAppUITests;
+			sourceTree = "<group>";
+		};
+2F3A6B1E78F896718625FF06 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				211373AE5379DB6A7DB9905F,
+				6113FCC6B2E641A6E2CFCD59,
+				FEC372FE67838C7B77323CF0,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+778799D1FB0081DF77469346 /* DepremOldu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04D958FF1CC3CC9FC7D42A15;
+			buildPhases = (
+				DC482FE6EE57218E00B7B4BF,
+				504E557AD0031209E49139EB,
+				9467A516914D47481D8FED0B,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DepremOldu;
+			packageProductDependencies = (
+				80770A7EBFE6C49750B0BD2A,
+				8A069E8E8F833C4A8E48CD8B,
+				B8442C55CD0FC4CFF376001B,
+				513ADBE3C81CE7328071F771,
+				CE756074966665FAD844C794,
+			);
+			productName = DepremOldu;
+			productReference = 211373AE5379DB6A7DB9905F;
+			productType = "com.apple.product-type.application";
+		};
+0518022B93243A311510A37C /* DepremOlduAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFC90921255A730ABD54A110;
+			buildPhases = (
+				F74B1C69325F9D12514927C5,
+				3AB7FE7BA6E0DBC4635B1562,
+				41D10F2C9BB42658DF35D2E4,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A4BAD6A336545383EA809F95,
+			);
+			name = DepremOlduAppTests;
+			packageProductDependencies = (
+				46FB6A28E150E453DAA5AC28,
+				E351A15F7CD38C036245EB9C,
+				43670667CCA2311EFC5FB768,
+				C71AD05118ABDDE546338604,
+				817F1AF5A6F022D72B72B215,
+				1E11B51A0321804757E55155,
+			);
+			productName = DepremOlduAppTests;
+			productReference = 6113FCC6B2E641A6E2CFCD59;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+EF642085D96B2FB2327D0DFB /* DepremOlduAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75563806FD43F98F65D908FD;
+			buildPhases = (
+				35B26C2CA5D90F664B21D863,
+				72F75C82025A9D84E745B13D,
+				A929BAE37D842518283E51CD,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9E5550428946999AACEC9C46,
+			);
+			name = DepremOlduAppUITests;
+			packageProductDependencies = (
+			);
+			productName = DepremOlduAppUITests;
+			productReference = FEC372FE67838C7B77323CF0;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+46F86FAA6BBF9AC94A7E4595 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 2660;
+				TargetAttributes = {
+					778799D1FB0081DF77469346 = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					0518022B93243A311510A37C = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = 778799D1FB0081DF77469346;
+					};
+					EF642085D96B2FB2327D0DFB = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = 778799D1FB0081DF77469346;
+					};
+				};
+			};
+			buildConfigurationList = 479141CF4F7E78536D4D69BF;
+			compatibilityVersion = "Xcode 16.0";
+			developmentRegion = tr;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				tr,
+				Base,
+			);
+			mainGroup = BB5D8E872B7D45C0EFD70B64;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				58CF61F0180591519E0A72F1 /* XCLocalSwiftPackageReference "Packages/DepremOlduCore" */,
+			);
+			productRefGroup = 2F3A6B1E78F896718625FF06 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				778799D1FB0081DF77469346 /* DepremOldu */,
+				0518022B93243A311510A37C /* DepremOlduAppTests */,
+				EF642085D96B2FB2327D0DFB /* DepremOlduAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+9467A516914D47481D8FED0B = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E02F781E6F8AF1B37C0AC91,
+				78B2946A2825614E0DD447A5,
+				FE0A4EA99C941AC30EF7F582,
+				6D59801EC5F7D0C35C068CD9,
+				CC148260F2B1FE316A573844,
+				06CFF3EE9EC1B54929F4D901,
+				130A2F1E80EF81EF87BCE308,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+41D10F2C9BB42658DF35D2E4 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+A929BAE37D842518283E51CD = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+DC482FE6EE57218E00B7B4BF = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				445E16A0F4519CE5684239B2,
+				C4CEA85C221881EA44F9CC87,
+				17F8229CCFA1C81FB5BF1DA2,
+				6D53A9F919E83F4F321DB31C,
+				3EC413EADCBEE8DC766AD60C,
+				E3084D73511F4821F1233007,
+				1796B5355BEF2C095F648428,
+				69B4C3963BDFB3BC290B33AB,
+				993B050FFA5792D1EB71D841,
+				EA6383764FBAD53941C11EBB,
+				CC5D2C428C560DB1302360BB,
+				1D24D28737C0136E6A487B4B,
+				B868C89E622BBA115D528FF2,
+				CDC47DBFA50B218A07BB4AE0,
+				0296F5766DE6EC72169BB7A4,
+				9781DADF9C469C78681E7CBA,
+				827886A887598AA1B71CE805,
+				B399A26DF907DD25574136B5,
+				37F70B963F00E5BC538CD4F8,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+F74B1C69325F9D12514927C5 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B7A1F0AC886B532CD4D1749,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+35B26C2CA5D90F664B21D863 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				681ADD4A3E42008D3100A1A0,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+A4BAD6A336545383EA809F95 = {
+			isa = PBXTargetDependency;
+			target = 778799D1FB0081DF77469346;
+			targetProxy = B808BA2147EBCFE87FB04163;
+		};
+		9E5550428946999AACEC9C46 = {
+			isa = PBXTargetDependency;
+			target = 778799D1FB0081DF77469346;
+			targetProxy = 8C9BE257A1E4F9FA69887CD6;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+4A43692AD8BCEEB8B727C85B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30373D58AEEDA4A2131F96A0;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+59D9FDE793CD1E8BBC102800 /* Test */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DE0D7CD588F9B4C0F23BDAB;
+			buildSettings = {
+			};
+			name = Test;
+		};
+C28449456A5A705A7479770B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE1790B90ECBDFD5FADE3560;
+			buildSettings = {
+			};
+			name = Release;
+		};
+0615050D04BD2DC4E6CFFAFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30373D58AEEDA4A2131F96A0;
+			buildSettings = {
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Apps/DepremOldu/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Deprem Oldu";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEPREMOLDU_BUNDLE_ID)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+			};
+			name = Debug;
+		};
+233C28F6F83A557A3DE34DD2 /* Test */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DE0D7CD588F9B4C0F23BDAB;
+			buildSettings = {
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Apps/DepremOldu/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Deprem Oldu";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEPREMOLDU_BUNDLE_ID)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+			};
+			name = Test;
+		};
+2761849A6D0E26CA4E1817A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE1790B90ECBDFD5FADE3560;
+			buildSettings = {
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Apps/DepremOldu/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Deprem Oldu";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEPREMOLDU_BUNDLE_ID)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+			};
+			name = Release;
+		};
+AB1B46DD09512F66903BA0D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30373D58AEEDA4A2131F96A0;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEPREMOLDU_BUNDLE_ID).tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DepremOldu.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DepremOldu";
+			};
+			name = Debug;
+		};
+EB98C561975D468F57808AC6 /* Test */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DE0D7CD588F9B4C0F23BDAB;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEPREMOLDU_BUNDLE_ID).tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DepremOldu.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DepremOldu";
+			};
+			name = Test;
+		};
+C270CC683F6AEE6E2CA67A9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE1790B90ECBDFD5FADE3560;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEPREMOLDU_BUNDLE_ID).tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DepremOldu.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DepremOldu";
+			};
+			name = Release;
+		};
+AC4ECD2B590BED7ECFFB2130 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30373D58AEEDA4A2131F96A0;
+			buildSettings = {
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEPREMOLDU_BUNDLE_ID).uitests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				TEST_TARGET_NAME = DepremOldu;
+			};
+			name = Debug;
+		};
+667439E1023A04D2624C0846 /* Test */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DE0D7CD588F9B4C0F23BDAB;
+			buildSettings = {
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEPREMOLDU_BUNDLE_ID).uitests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				TEST_TARGET_NAME = DepremOldu;
+			};
+			name = Test;
+		};
+90CFF99E3EF5F6C8CE75123A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE1790B90ECBDFD5FADE3560;
+			buildSettings = {
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(DEPREMOLDU_BUNDLE_ID).uitests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				TEST_TARGET_NAME = DepremOldu;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+04D958FF1CC3CC9FC7D42A15 /* Build configuration list for PBXNativeTarget "DepremOldu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0615050D04BD2DC4E6CFFAFF,
+				233C28F6F83A557A3DE34DD2,
+				2761849A6D0E26CA4E1817A1,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+BFC90921255A730ABD54A110 /* Build configuration list for PBXNativeTarget "DepremOlduAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB1B46DD09512F66903BA0D4,
+				EB98C561975D468F57808AC6,
+				C270CC683F6AEE6E2CA67A9D,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+75563806FD43F98F65D908FD /* Build configuration list for PBXNativeTarget "DepremOlduAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC4ECD2B590BED7ECFFB2130,
+				667439E1023A04D2624C0846,
+				90CFF99E3EF5F6C8CE75123A,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+479141CF4F7E78536D4D69BF /* Build configuration list for PBXProject "DepremOldu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A43692AD8BCEEB8B727C85B,
+				59D9FDE793CD1E8BBC102800,
+				C28449456A5A705A7479770B,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+58CF61F0180591519E0A72F1 /* XCLocalSwiftPackageReference "Packages/DepremOlduCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/DepremOlduCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+80770A7EBFE6C49750B0BD2A /* DepremOlduDomain */ = {isa = XCSwiftPackageProductDependency; package = 58CF61F0180591519E0A72F1 /* XCLocalSwiftPackageReference "Packages/DepremOlduCore" */; productName = DepremOlduDomain; };
+8A069E8E8F833C4A8E48CD8B /* DepremOlduFaults */ = {isa = XCSwiftPackageProductDependency; package = 58CF61F0180591519E0A72F1 /* XCLocalSwiftPackageReference "Packages/DepremOlduCore" */; productName = DepremOlduFaults; };
+B8442C55CD0FC4CFF376001B /* DepremOlduNetworking */ = {isa = XCSwiftPackageProductDependency; package = 58CF61F0180591519E0A72F1 /* XCLocalSwiftPackageReference "Packages/DepremOlduCore" */; productName = DepremOlduNetworking; };
+513ADBE3C81CE7328071F771 /* DepremOlduPersistence */ = {isa = XCSwiftPackageProductDependency; package = 58CF61F0180591519E0A72F1 /* XCLocalSwiftPackageReference "Packages/DepremOlduCore" */; productName = DepremOlduPersistence; };
+CE756074966665FAD844C794 /* DepremOlduRepository */ = {isa = XCSwiftPackageProductDependency; package = 58CF61F0180591519E0A72F1 /* XCLocalSwiftPackageReference "Packages/DepremOlduCore" */; productName = DepremOlduRepository; };
+46FB6A28E150E453DAA5AC28 /* DepremOlduDomain */ = {isa = XCSwiftPackageProductDependency; package = 58CF61F0180591519E0A72F1 /* XCLocalSwiftPackageReference "Packages/DepremOlduCore" */; productName = DepremOlduDomain; };
+E351A15F7CD38C036245EB9C /* DepremOlduFaults */ = {isa = XCSwiftPackageProductDependency; package = 58CF61F0180591519E0A72F1 /* XCLocalSwiftPackageReference "Packages/DepremOlduCore" */; productName = DepremOlduFaults; };
+43670667CCA2311EFC5FB768 /* DepremOlduNetworking */ = {isa = XCSwiftPackageProductDependency; package = 58CF61F0180591519E0A72F1 /* XCLocalSwiftPackageReference "Packages/DepremOlduCore" */; productName = DepremOlduNetworking; };
+C71AD05118ABDDE546338604 /* DepremOlduPersistence */ = {isa = XCSwiftPackageProductDependency; package = 58CF61F0180591519E0A72F1 /* XCLocalSwiftPackageReference "Packages/DepremOlduCore" */; productName = DepremOlduPersistence; };
+817F1AF5A6F022D72B72B215 /* DepremOlduRepository */ = {isa = XCSwiftPackageProductDependency; package = 58CF61F0180591519E0A72F1 /* XCLocalSwiftPackageReference "Packages/DepremOlduCore" */; productName = DepremOlduRepository; };
+1E11B51A0321804757E55155 /* DepremOlduTestSupport */ = {isa = XCSwiftPackageProductDependency; package = 58CF61F0180591519E0A72F1 /* XCLocalSwiftPackageReference "Packages/DepremOlduCore" */; productName = DepremOlduTestSupport; };
+/* End XCSwiftPackageProductDependency section */
+
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+}
