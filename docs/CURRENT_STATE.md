@@ -6,6 +6,7 @@ Son güncelleme: 2026-09-12
 
 - Faz 1 (temel + sürüm 1.0.0 kapsamı): **Uygulandı** — liste, harita, fay katmanı, Afet Bilinci, Hakkında, yerel cache/retry, testler ve dokümantasyon.
 - Faz 2 (fiziksel cihaz kabulü): **Bekliyor** — ürün sahibi cihaz turu.
+- Depo ve release kaydı: `github.com/bedirdemir/depremoldu-ios` (private); `main`/`test`/`dev` dalları ve PR akışı kuruldu; PR #1 (`dev -> test`) ve PR #2 (`test -> main`) merge edildi; `main` üzerinde annotated `v1.0.0` tag'i var. Tüm dallarda branch protection (PR zorunlu, force push/deletion kapalı) etkin.
 
 ## Doğrulananlar
 
