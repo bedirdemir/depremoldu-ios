@@ -9,10 +9,11 @@ Bu belge uygulama paketindeki üçüncü taraf varlıkları ve doğrulama tarihi
 - Lisans: SIL Open Font License 1.1 (`Fonts/OFL.txt` pakete dahildir).
 - Doğrulama: 2026-09-12.
 
-## App simgesi
+## App simgesi ve marka işareti
 
-- Kaynak: web deposu `public/android-chrome-512x512.png` (depremoldu.org marka işareti).
-- Üretim: `scripts/build_app_icon.py` piksel sınıflandırması ile 1024×1024 keskin ikon üretir; marka renkleri `#FCFFE7` zemin ve `#EB455F` çizgidir.
+- Kaynak: web deposu `public/depremolduappicon.png` (2048×2048, ürün ikonu; `#FCFFE7` zemin + `#EB455F` çizgi).
+- Üretim: `scripts/build_app_icon.py` ikonu 1024×1024 App Store varlığına indirir ve alfa kanalını krem zemine düzler. Aynı ikon Android portunda da kullanılacaktır.
+- Marka işareti (çizgi): `docs/assets/brand-mark.svg` (ürün ikonundaki sismograf hattı); `scripts/build_brand_mark.py` bu hattı saydam zeminli, 1x/2x/3x template PNG'lere dönüştürür (`BrandMark.imageset`). Üst başlıkta ve "Son Depremler" sekmesinde kullanılır.
 - Sahiplik: depremoldu.org projesi.
 
 ## Fay hattı verisi

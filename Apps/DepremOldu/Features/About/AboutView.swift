@@ -64,6 +64,11 @@ struct AboutView: View {
                         url: URL(string: "https://api.orhanaydogdu.com.tr/deprem/api-docs/")!
                     )
                     linkRow(
+                        title: "Geliştirici Web Sitesi",
+                        detail: "bedirdemir.com",
+                        url: URL(string: "https://bedirdemir.com")!
+                    )
+                    linkRow(
                         title: "GitHub",
                         detail: "Açık kaynak depo",
                         url: URL(string: "https://github.com/bedirdemir/depremolduorg-nuxtjs")!

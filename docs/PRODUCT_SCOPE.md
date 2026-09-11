@@ -8,11 +8,11 @@ Kaynak ürün: `depremolduorg-nuxtjs` (Nuxt 4 + Vue 3 + Pinia + Tailwind). Web �
 
 | Web davranışı | iOS karşılığı | Durum |
 |---|---|---|
-| Son 200 deprem listesi (50/sayfa sayfalama) | Son 200 deprem, 50'lik sayfalama (Önceki/Sonraki + sayfa numaraları) + pull-to-refresh | Uygulandı |
-| Büyüklük sınıfı renkleri ve rozeti (ML) | Aynı eşikler, aynı renkler, 64×96 pt rozet | Uygulandı |
+| Son 200 deprem listesi (50/sayfa sayfalama) | Son 200 deprem tek sürekli listede (native akış) + pull-to-refresh | Uygulandı (native davranış) |
+| Büyüklük sınıfı renkleri ve rozeti (ML) | Aynı eşikler/renkler, 64×96 pt rozet, web gradient'iyle soldan sağa satır zemini | Uygulandı |
 | Göreli zaman (dayjs `tr`) | `TurkishRelativeTimeFormatter`, 30 sn tick | Uygulandı |
 | Tarih-saat, derinlik, "Konumu görüntüle" | Aynı bilgi satırları; satır tamamı dokunulabilir | Uygulandı |
-| "X-Y / N deprem" sayacı | Sayfalama altında aynı metin (`1-50 / 200 deprem`) | Uygulandı |
+| "X-Y / N deprem" sayacı | Liste sonunda sade sayaç (`200 deprem`) | Uygulandı |
 | "Yenile" butonu | Toolbar butonu + pull-to-refresh | Uygulandı |
 | Konum modalı (Leaflet + pin) | MapKit sheet'i + bilgi kartı | Uygulandı |
 | Footer atıf ve GitHub bağlantısı | Liste altı sadeleştirildi; atıf/bağlantılar Hakkında ekranında | Uygulandı |
@@ -44,6 +44,8 @@ Kaynak ürün: `depremolduorg-nuxtjs` (Nuxt 4 + Vue 3 + Pinia + Tailwind). Web �
 - Hakkında ekranı: veri/API atıfları, sürüm, kaynak ve bağlantılar, sorumluluk notu.
 - Çevrimdışıyken stale veri gösterimi ve yenileme hatası bandı.
 - Yalnız açık mod; koyu mod bilinçli olarak desteklenmez (marka görünümü sabittir).
+- Marka çizgisi (ürün ikonundaki sismograf hattı) üst başlıkta ve Son Depremler sekmesinde kullanılır; aynı ikon Android portunda da geçerlidir.
+- Hakkında'da Geliştirici Web Sitesi (`bedirdemir.com`) bağlantısı.
 
 ## Kapsam dışı (bilinçli)
 
