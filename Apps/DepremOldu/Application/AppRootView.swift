@@ -13,7 +13,11 @@ struct AppRootView: View {
                     onShowLocation: { model.presentedLocationEarthquake = $0 }
                 )
                 .tabItem {
-                    Label("Son Depremler", systemImage: "waveform.path.ecg")
+                    Label {
+                        Text("Son Depremler")
+                    } icon: {
+                        Image("BrandMark")
+                    }
                 }
                 .tag(AppShellModel.Tab.earthquakes)
 
@@ -51,11 +55,18 @@ struct AppRootView: View {
 
             if model.selectedTab != .awareness {
                 Button {
+                    guard !isRefreshing else { return }
                     Task { await model.feedModel.refresh() }
                 } label: {
                     HStack(spacing: 5) {
-                        Image(systemName: "arrow.clockwise")
-                            .font(.system(size: 12, weight: .semibold))
+                        if isRefreshing {
+                            ProgressView()
+                                .controlSize(.small)
+                                .tint(AppColor.primary)
+                        } else {
+                            Image(systemName: "arrow.clockwise")
+                                .font(.system(size: 12, weight: .semibold))
+                        }
                         Text("Yenile")
                             .font(AppFont.medium(13, relativeTo: .footnote))
                     }
@@ -70,7 +81,6 @@ struct AppRootView: View {
                     )
                 }
                 .buttonStyle(.plain)
-                .disabled(model.feedModel.content?.refreshState == .refreshing)
                 .accessibilityIdentifier("toolbar.refresh")
             }
 
@@ -91,13 +101,20 @@ struct AppRootView: View {
         .padding(.vertical, 8)
         .background(Color(uiColor: .systemBackground))
     }
+
+    private var isRefreshing: Bool {
+        model.feedModel.content?.refreshState == .refreshing
+    }
 }
 
 struct BrandTitle: View {
     var body: some View {
-        HStack(spacing: 6) {
-            Image(systemName: "waveform.path.ecg")
-                .font(.system(size: 19, weight: .semibold))
+        HStack(spacing: 7) {
+            Image("BrandMark")
+                .renderingMode(.template)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 24, height: 22)
                 .foregroundStyle(AppColor.primary)
             HStack(spacing: 0) {
                 Text("depremoldu")
