@@ -1,0 +1,44 @@
+{
+  "status": true,
+  "httpStatus": 200,
+  "desc": "",
+  "serverloadms": 11,
+  "result": [
+    {
+      "earthquake_id": "ClPx8QiI47G3g",
+      "provider": "kandilli",
+      "title": "SUGUL-DARENDE (MALATYA)",
+      "mag": 2,
+      "depth": 5.3,
+      "geojson": { "type": "Point", "coordinates": [37.5222, 38.43] },
+      "rev": null,
+      "date_time": "2026-09-11 23:24:22",
+      "created_at": 1789158262,
+      "location_tz": "Europe/Istanbul"
+    },
+    {
+      "earthquake_id": "DwBBVRiUaPzHc",
+      "provider": "kandilli",
+      "title": "EGE DENIZI",
+      "mag": 1.9,
+      "depth": 17.2,
+      "geojson": { "type": "Point", "coordinates": [27.6453, 36.2798] },
+      "rev": null,
+      "date_time": "2026-09-11 23:02:48",
+      "created_at": 1789156968,
+      "location_tz": "Europe/Istanbul"
+    },
+    {
+      "earthquake_id": "G6tyl8JoaHgGf",
+      "provider": "kandilli",
+      "title": "GIRIT ADASI ACIKLARI (AKDENIZ)",
+      "mag": 1.8,
+      "depth": 5,
+      "geojson": { "type": "Point", "coordinates": [24.4887, 34.8723] },
+      "rev": null,
+      "date_time": "2026-09-11 22:59:09",
+      "created_at": 1789156749,
+      "location_tz": "Europe/Istanbul"
+    }
+  ]
+}

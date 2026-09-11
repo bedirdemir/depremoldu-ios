@@ -1,0 +1,31 @@
+// Shared, non-secret build settings.
+
+IPHONEOS_DEPLOYMENT_TARGET = 18.0
+SWIFT_VERSION = 6.0
+SWIFT_STRICT_CONCURRENCY = complete
+SWIFT_TREAT_WARNINGS_AS_ERRORS = YES
+GCC_TREAT_WARNINGS_AS_ERRORS = YES
+ALWAYS_SEARCH_USER_PATHS = NO
+ENABLE_USER_SCRIPT_SANDBOXING = YES
+
+CODE_SIGN_STYLE = Automatic
+DEVELOPMENT_TEAM =
+
+// User-visible release target. Normative policy: docs/BRANCHING_RELEASES.md.
+MARKETING_VERSION = 1.0.0
+// App Store Connect upload counter; increment independently from marketing version.
+CURRENT_PROJECT_VERSION = 1
+DEPREMOLDU_BUNDLE_ID = org.depremoldu.app
+
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
+ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor
+TARGETED_DEVICE_FAMILY = 1
+SUPPORTS_MACCATALYST = NO
+
+// The app uses HTTPS/Apple platform security APIs and SHA-256 hashing only;
+// it does not implement or ship non-exempt encryption algorithms.
+INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO
+
+// Optional, ignored developer-machine overrides. Keep this include last so
+// local signing can override the empty shared DEVELOPMENT_TEAM value.
+#include? "Local.xcconfig"

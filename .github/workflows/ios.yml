@@ -1,0 +1,57 @@
+name: iOS CI
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build and test
+    runs-on: macos-26
+    timeout-minutes: 30
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+      SIMULATOR_NAME: iPhone 17 Pro Max
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Report toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+
+      - name: Reject tracked signing settings, material, and private keys
+        shell: bash
+        run: |
+          if git ls-files | grep -E '\.(mobileprovision|p8|p12|key)$'; then
+            echo "Tracked signing or private-key material is not allowed."
+            exit 1
+          fi
+          if git grep -n -E -- 'BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY'; then
+            echo "A private-key marker was found in tracked content."
+            exit 1
+          fi
+          if git grep -n -E -- 'DEVELOPMENT_TEAM[[:space:]]*=[[:space:]]*[A-Z0-9]{10}([[:space:]]*;)?$' -- '*.pbxproj' '*.xcconfig'; then
+            echo "A concrete Apple Team ID was found in tracked build settings."
+            exit 1
+          fi
+
+      - name: Build and test
+        run: make verify
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcode-test-results
+          path: test-results/*.xcresult
+          if-no-files-found: warn
+          retention-days: 14

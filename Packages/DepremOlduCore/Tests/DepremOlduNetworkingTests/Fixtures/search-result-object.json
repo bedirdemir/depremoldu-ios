@@ -1,0 +1,7 @@
+{
+  "status": true,
+  "httpStatus": 200,
+  "result": {
+    "unexpected": "the provider returned an object instead of an array"
+  }
+}
