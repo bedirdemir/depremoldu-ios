@@ -15,6 +15,10 @@ Son güncelleme: 2026-09-12
 - Simulator görsel doğrulaması: liste, konum sheet'i, harita, fay katmanı, Afet Bilinci, Hakkında.
 - Gömülü `Faults.json`: 5693 fay çizgisi, 46328 nokta (GINRAS/AFEAD 2018) — web `public/FaultData` KMZ dosyalarından script ile üretildi.
 
+## Kabul revizyonu (2026-09-12)
+
+Fiziksel kabul öncesi ürün geri bildirimleri uygulandı: yalnız açık mod, sabit/sol hizalı başlık, sıkıştırılmış liste + 50'lik sayfalama, nokta üstü map popup'ı, liste altı sadeleştirmesi ve Hakkında metin güncellemeleri. Ayrıntı: CHANGELOG `[Unreleased]` ve ADR-0009. Fiziksel cihaz turu bu revizyonla tekrarlanacaktır.
+
 ## Bekleyen insan kabulü
 
 - Fiziksel iPhone'da canlı API akışı, çevrimdışı davranış, Dynamic Type ve VoiceOver turu.

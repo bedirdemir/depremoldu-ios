@@ -16,7 +16,7 @@ Durum: **Not Run** (bekliyor). Ürün sahibi tarafından doldurulur.
 - [ ] Satıra dokun: konum sheet'i doğru merkez ve pin ile açılıyor.
 - [ ] Harita: 500 marker, sınıf renkleri ve boyutları doğru.
 - [ ] Fay Hatları chip'i: veri yükleniyor, çizgiler doğru renk/kalınlıkta; zoom ile kalınlık değişiyor.
-- [ ] Marker seçimi: alt kart doğru bilgiyi gösteriyor; kapatınca seçim kalkıyor.
+- [ ] Marker seçimi: popup noktanın üstünde doğru bilgiyle açılıyor; detay bağlantısı yok.
 - [ ] Afet Bilinci: kartlar ve Oku/İzle/Görüntüle uygulama içi Safari'de açılıyor.
 - [ ] Hakkında: sürüm, kaynaklar ve bağlantılar doğru.
 - [ ] Çevrimdışı: son veri gösteriliyor, hata bandı "Yenile" sunuyor; cache yoksa hata durumu ve "Tekrar Dene".
@@ -26,7 +26,7 @@ Durum: **Not Run** (bekliyor). Ürün sahibi tarafından doldurulur.
 - [ ] Dynamic Type XXXL ve Accessibility 5: metrikler kesilmiyor, rozet okunuyor.
 - [ ] VoiceOver: satırlar tek öğe; harita legend ve chip anlamlı.
 - [ ] Azaltılmış hareket ve artırılmış kontrast açıkken görünüm bozulmuyor.
-- [ ] Koyu mod: kontrast ve okunabilirlik yeterli.
+- [ ] Cihaz koyu moddayken uygulama açık modda kalıyor (marka görünümü).
 
 ## Notlar
 

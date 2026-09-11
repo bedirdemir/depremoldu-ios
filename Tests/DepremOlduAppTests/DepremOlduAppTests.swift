@@ -54,7 +54,7 @@ struct EarthquakeFeedFeatureModelTests {
         #expect(model.countSummary == "1-12 / 12 deprem")
     }
 
-    @Test("List shows at most 200 and the map at most 500")
+    @Test("List shows at most 200 in pages of 50 and the map at most 500")
     func listAndMapLimits() async {
         let model = makeModel(repository: StubEarthquakeRepository.content(EarthquakeFixtures.feed(count: 600)))
         model.loadIfNeeded()
@@ -62,7 +62,64 @@ struct EarthquakeFeedFeatureModelTests {
 
         #expect(model.listEarthquakes.count == 200)
         #expect(model.mapEarthquakes.count == 500)
-        #expect(model.countSummary == "1-200 / 600 deprem")
+        #expect(model.listPageCount == 4)
+        #expect(model.countSummary == "1-50 / 200 deprem")
+    }
+
+    @Test("Pagination slices pages of 50 and clamps at the boundaries")
+    func pagination() async {
+        let model = makeModel(repository: StubEarthquakeRepository.content(EarthquakeFixtures.feed(count: 120)))
+        model.loadIfNeeded()
+        await waitUntil { model.content != nil }
+
+        #expect(model.listPageCount == 3)
+        #expect(model.isFirstPage)
+        #expect(!model.isLastPage)
+        #expect(model.paginatedEarthquakes.count == 50)
+        #expect(model.paginatedEarthquakes.first?.id == "fixture-0")
+        #expect(model.countSummary == "1-50 / 120 deprem")
+
+        model.nextPage()
+        #expect(model.currentPage == 2)
+        #expect(model.paginatedEarthquakes.count == 50)
+        #expect(model.paginatedEarthquakes.first?.id == "fixture-50")
+        #expect(model.countSummary == "51-100 / 120 deprem")
+
+        model.nextPage()
+        #expect(model.currentPage == 3)
+        #expect(model.isLastPage)
+        #expect(model.paginatedEarthquakes.count == 20)
+        #expect(model.paginatedEarthquakes.first?.id == "fixture-100")
+        #expect(model.countSummary == "101-120 / 120 deprem")
+
+        model.nextPage()
+        #expect(model.currentPage == 3)
+
+        model.goToPage(0)
+        #expect(model.currentPage == 1)
+        model.previousPage()
+        #expect(model.currentPage == 1)
+    }
+
+    @Test("Refreshing with fewer records clamps the current page")
+    func paginationClampsAfterRefresh() async {
+        let repository = TwoPhaseEarthquakeRepository(
+            first: EarthquakeFixtures.feed(count: 120),
+            second: EarthquakeFixtures.feed(count: 20)
+        )
+        let model = makeModel(repository: repository)
+        model.loadIfNeeded()
+        await waitUntil { model.content != nil }
+        model.goToPage(3)
+        #expect(model.currentPage == 3)
+        #expect(model.countSummary == "101-120 / 120 deprem")
+
+        await model.refresh()
+        await waitUntil { model.listTotalCount == 20 }
+
+        #expect(model.currentPage == 1)
+        #expect(model.countSummary == "1-20 / 20 deprem")
+        #expect(model.paginatedEarthquakes.count == 20)
     }
 
     @Test("Empty content has a zero summary")
@@ -222,6 +279,37 @@ struct EarthquakeMapFeatureModelTests {
     }
 }
 
+final class TwoPhaseEarthquakeRepository: EarthquakeRepositoryProviding, @unchecked Sendable {
+    private let first: [Earthquake]
+    private let second: [Earthquake]
+    private let lock = NSLock()
+    private var callCount = 0
+
+    init(first: [Earthquake], second: [Earthquake]) {
+        self.first = first
+        self.second = second
+    }
+
+    func events(
+        policy: EarthquakeLoadPolicy = .normal
+    ) -> AsyncThrowingStream<EarthquakeRepositoryEvent, any Error> {
+        let earthquakes: [Earthquake] = lock.withLock {
+            callCount += 1
+            return callCount == 1 ? first : second
+        }
+        let value = EarthquakeRepositoryValue(
+            earthquakes: earthquakes,
+            fetchedAt: Date(),
+            source: .network,
+            freshness: .fresh
+        )
+        return AsyncThrowingStream { continuation in
+            continuation.yield(.value(value))
+            continuation.finish()
+        }
+    }
+}
+
 struct StubFaultDatasetProvider: FaultDatasetProviding {
     let dataset: FaultDataset
 
@@ -280,5 +368,12 @@ struct UITestingFixtureTests {
         #expect(feed.contains { $0.magnitudeClass == .medium })
         #expect(feed.contains { $0.magnitudeClass == .large })
         #expect(feed.contains { $0.magnitudeClass == .veryLarge })
+        #expect(feed.allSatisfy { $0.region.hasPrefix("FIXTURE REGION") })
+
+        let many = UITestingEarthquakeFixtures.feed(count: 120)
+        #expect(many.count == 120)
+        #expect(Set(many.map(\.id)).count == many.count)
+        #expect(many.first?.id == "ui-1")
+        #expect(many.last?.id == "ui-120")
     }
 }

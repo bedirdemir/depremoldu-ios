@@ -36,15 +36,11 @@ struct MagnitudePalette {
 
     var badgeBackground: Color { accent }
 
-    func rowGradient(for colorScheme: ColorScheme) -> LinearGradient {
-        let leading = accent.opacity(colorScheme == .dark ? 0.22 : 0.085)
-        let trailing = colorScheme == .dark
-            ? Color(uiColor: .systemBackground)
-            : Color.white
-        return LinearGradient(
+    var rowGradient: LinearGradient {
+        LinearGradient(
             stops: [
-                .init(color: leading, location: 0.2),
-                .init(color: trailing, location: 0.9),
+                .init(color: accent.opacity(0.085), location: 0.2),
+                .init(color: .white, location: 0.9),
             ],
             startPoint: .leading,
             endPoint: .trailing

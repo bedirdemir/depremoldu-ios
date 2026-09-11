@@ -26,7 +26,6 @@ struct EarthquakeMapBridge: UIViewRepresentable {
     let items: [EarthquakeMapItem]
     let faultDataset: FaultDataset?
     let showsFaultLines: Bool
-    @Binding var selectedEarthquakeID: Earthquake.ID?
 
     static let initialRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 39.13, longitude: 35.211),
@@ -34,7 +33,7 @@ struct EarthquakeMapBridge: UIViewRepresentable {
     )
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(selectedEarthquakeID: $selectedEarthquakeID)
+        Coordinator()
     }
 
     func makeUIView(context: Context) -> MKMapView {
@@ -55,8 +54,7 @@ struct EarthquakeMapBridge: UIViewRepresentable {
         context.coordinator.update(
             items: items,
             faultDataset: faultDataset,
-            showsFaultLines: showsFaultLines,
-            animatedSelection: false
+            showsFaultLines: showsFaultLines
         )
         return mapView
     }
@@ -65,29 +63,23 @@ struct EarthquakeMapBridge: UIViewRepresentable {
         context.coordinator.update(
             items: items,
             faultDataset: faultDataset,
-            showsFaultLines: showsFaultLines,
-            animatedSelection: true
+            showsFaultLines: showsFaultLines
         )
     }
 
     @MainActor
     final class Coordinator: NSObject, MKMapViewDelegate {
-        private var selectedEarthquakeID: Binding<Earthquake.ID?>
         private weak var mapView: MKMapView?
 
         private var itemsByID: [String: EarthquakeMapItem] = [:]
         private var itemIDs: [String] = []
         private var annotationByID: [String: EarthquakeMapAnnotation] = [:]
-        private var currentSelection: String?
+        private var calloutHosts: [String: UIHostingController<EarthquakeCalloutRoot>] = [:]
 
         private var faultSignature: FaultSignature?
         private var faultOverlays: [MKOverlay] = []
         private var styleByOverlay: [ObjectIdentifier: FaultOverlayStyle] = [:]
         private var rendererByOverlay: [ObjectIdentifier: MKMultiPolylineRenderer] = [:]
-
-        init(selectedEarthquakeID: Binding<Earthquake.ID?>) {
-            self.selectedEarthquakeID = selectedEarthquakeID
-        }
 
         func attach(_ mapView: MKMapView) {
             self.mapView = mapView
@@ -96,11 +88,9 @@ struct EarthquakeMapBridge: UIViewRepresentable {
         func update(
             items: [EarthquakeMapItem],
             faultDataset: FaultDataset?,
-            showsFaultLines: Bool,
-            animatedSelection: Bool
+            showsFaultLines: Bool
         ) {
             updateAnnotations(items: items)
-            updateSelection(animated: animatedSelection)
             updateFaults(dataset: faultDataset, showsFaultLines: showsFaultLines)
         }
 
@@ -116,6 +106,7 @@ struct EarthquakeMapBridge: UIViewRepresentable {
             itemsByID = Dictionary(uniqueKeysWithValues: items.map { ($0.id, $0) })
             itemIDs = ids
             annotationByID = [:]
+            calloutHosts = [:]
             var annotations: [EarthquakeMapAnnotation] = []
             annotations.reserveCapacity(items.count)
             for item in items {
@@ -124,28 +115,6 @@ struct EarthquakeMapBridge: UIViewRepresentable {
                 annotations.append(annotation)
             }
             mapView.addAnnotations(annotations)
-        }
-
-        private func updateSelection(animated: Bool) {
-            guard let mapView else { return }
-            let desired = selectedEarthquakeID.wrappedValue
-            guard desired != currentSelection else { return }
-
-            if let previous = currentSelection,
-               let annotation = annotationByID[previous],
-               let view = mapView.view(for: annotation) as? EarthquakeAnnotationView {
-                view.apply(annotation, isSelected: false)
-            }
-
-            currentSelection = desired
-
-            guard let desired, let annotation = annotationByID[desired] else { return }
-            if animated {
-                mapView.selectAnnotation(annotation, animated: true)
-            }
-            if let view = mapView.view(for: annotation) as? EarthquakeAnnotationView {
-                view.apply(annotation, isSelected: true)
-            }
         }
 
         private func updateFaults(dataset: FaultDataset?, showsFaultLines: Bool) {
@@ -213,8 +182,23 @@ struct EarthquakeMapBridge: UIViewRepresentable {
                 for: annotation
             )
             guard let annotationView = view as? EarthquakeAnnotationView else { return nil }
-            annotationView.apply(annotation, isSelected: annotation.id == currentSelection)
+            annotationView.apply(annotation, isSelected: false)
+            annotationView.canShowCallout = true
+            annotationView.detailCalloutAccessoryView = hostedCallout(for: annotation)
             return annotationView
+        }
+
+        private func hostedCallout(for annotation: EarthquakeMapAnnotation) -> UIView {
+            if let host = calloutHosts[annotation.id] {
+                host.rootView = EarthquakeCalloutRoot(earthquake: annotation.earthquake)
+                return host.view
+            }
+            let host = UIHostingController(
+                rootView: EarthquakeCalloutRoot(earthquake: annotation.earthquake)
+            )
+            host.view.backgroundColor = .clear
+            calloutHosts[annotation.id] = host
+            return host.view
         }
 
         func mapView(_ mapView: MKMapView, rendererFor overlay: any MKOverlay) -> MKOverlayRenderer {
@@ -236,8 +220,6 @@ struct EarthquakeMapBridge: UIViewRepresentable {
 
         func mapView(_ mapView: MKMapView, didSelect annotation: any MKAnnotation) {
             guard let annotation = annotation as? EarthquakeMapAnnotation else { return }
-            currentSelection = annotation.id
-            selectedEarthquakeID.wrappedValue = annotation.id
             if let view = mapView.view(for: annotation) as? EarthquakeAnnotationView {
                 view.apply(annotation, isSelected: true)
             }
@@ -245,10 +227,6 @@ struct EarthquakeMapBridge: UIViewRepresentable {
 
         func mapView(_ mapView: MKMapView, didDeselect annotation: any MKAnnotation) {
             guard let annotation = annotation as? EarthquakeMapAnnotation else { return }
-            if currentSelection == annotation.id {
-                currentSelection = nil
-                selectedEarthquakeID.wrappedValue = nil
-            }
             if let view = mapView.view(for: annotation) as? EarthquakeAnnotationView {
                 view.apply(annotation, isSelected: false)
             }
@@ -281,7 +259,7 @@ final class EarthquakeMapAnnotation: NSObject, MKAnnotation {
     init(item: EarthquakeMapItem) {
         id = item.id
         magnitudeClass = item.magnitudeClass
-        title = item.earthquake.region
+        title = nil
         earthquake = item.earthquake
         coordinate = item.coordinate
         super.init()

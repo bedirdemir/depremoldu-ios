@@ -3,49 +3,19 @@ import DepremOlduDomain
 
 struct EarthquakeListView: View {
     @Bindable var model: EarthquakeFeedFeatureModel
-    let onShowAbout: () -> Void
     let onShowLocation: (Earthquake) -> Void
 
-    @State private var safariItem: SafariItem?
-
     var body: some View {
-        NavigationStack {
-            screenContent
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        BrandTitle()
-                    }
-                    ToolbarItemGroup(placement: .topBarTrailing) {
-                        Button {
-                            Task { await model.refresh() }
-                        } label: {
-                            Label("Yenile", systemImage: "arrow.clockwise")
-                        }
-                        .disabled(model.content?.refreshState == .refreshing)
-                        .accessibilityIdentifier("toolbar.refresh")
-
-                        Button {
-                            onShowAbout()
-                        } label: {
-                            Label("Hakkında", systemImage: "info.circle")
-                        }
-                    }
-                }
-        }
-        .tint(AppColor.primary)
-        .task {
-            model.loadIfNeeded()
-        }
-        .task {
-            while !Task.isCancelled {
-                try? await Task.sleep(for: .seconds(30))
-                model.tick()
+        screenContent
+            .task {
+                model.loadIfNeeded()
             }
-        }
-        .sheet(item: $safariItem) { item in
-            SafariView(url: item.url)
-        }
+            .task {
+                while !Task.isCancelled {
+                    try? await Task.sleep(for: .seconds(30))
+                    model.tick()
+                }
+            }
     }
 
     @ViewBuilder
@@ -76,71 +46,136 @@ struct EarthquakeListView: View {
     }
 
     private var list: some View {
-        List {
-            ForEach(model.listEarthquakes) { earthquake in
-                EarthquakeRowView(
-                    earthquake: earthquake,
-                    relativeTime: model.relativeTime(for: earthquake),
-                    onShowLocation: { onShowLocation(earthquake) }
-                )
-            }
+        ScrollViewReader { proxy in
+            List {
+                Color.clear
+                    .frame(height: 0)
+                    .listRowInsets(EdgeInsets())
+                    .listRowSeparator(.hidden)
+                    .id(Self.listTopID)
 
-            Section {
-                EmptyView()
-            } footer: {
-                footer
+                ForEach(model.paginatedEarthquakes) { earthquake in
+                    EarthquakeRowView(
+                        earthquake: earthquake,
+                        relativeTime: model.relativeTime(for: earthquake),
+                        onShowLocation: { onShowLocation(earthquake) }
+                    )
+                }
+
+                Section {
+                    EmptyView()
+                } footer: {
+                    paginationFooter(proxy: proxy)
+                }
             }
-        }
-        .listStyle(.plain)
-        .refreshable {
-            await model.refresh()
+            .listStyle(.plain)
+            .refreshable {
+                await model.refresh()
+            }
         }
     }
 
-    private var footer: some View {
+    private func paginationFooter(proxy: ScrollViewProxy) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(model.countSummary)
                 .font(AppFont.regular(12, relativeTo: .caption))
                 .foregroundStyle(.secondary)
                 .accessibilityIdentifier("earthquake.count")
 
-            Text(
-                "Veriler Boğaziçi Üniversitesi Kandilli Rasathanesi ve Deprem Araştırma "
-                    + "Enstitüsü Bölgesel Deprem-Tsunami İzleme ve Değerlendirme Merkezi'nden gelmektedir."
-            )
-            .font(AppFont.regular(12, relativeTo: .caption))
-            .foregroundStyle(.secondary)
+            if model.listPageCount > 1 {
+                HStack(spacing: 8) {
+                    arrowButton(
+                        title: "Önceki",
+                        systemImage: "chevron.left",
+                        isEnabled: !model.isFirstPage,
+                        identifier: "pagination.previous"
+                    ) {
+                        model.previousPage()
+                        scrollToTop(proxy)
+                    }
 
-            HStack(spacing: 16) {
-                Button {
-                    safariItem = SafariItem(url: Self.kandilliURL)
-                } label: {
-                    Text("koeri.boun.edu.tr")
-                        .font(AppFont.medium(12, relativeTo: .caption))
-                        .foregroundStyle(AppColor.secondary)
+                    ForEach(1 ... model.listPageCount, id: \.self) { page in
+                        pageButton(page) {
+                            model.goToPage(page)
+                            scrollToTop(proxy)
+                        }
+                    }
+
+                    arrowButton(
+                        title: "Sonraki",
+                        systemImage: "chevron.right",
+                        isEnabled: !model.isLastPage,
+                        identifier: "pagination.next"
+                    ) {
+                        model.nextPage()
+                        scrollToTop(proxy)
+                    }
                 }
-                .buttonStyle(.plain)
-
-                Button {
-                    safariItem = SafariItem(url: Self.repositoryURL)
-                } label: {
-                    Label("GitHub", systemImage: "chevron.left.forwardslash.chevron.right")
-                        .font(AppFont.medium(12, relativeTo: .caption))
-                        .foregroundStyle(AppColor.secondary)
-                }
-                .buttonStyle(.plain)
-
-                Spacer(minLength: 0)
             }
-
-            Text("Bu uygulama resmî bir deprem uyarı sistemi değildir; veriler bilgilendirme amaçlıdır.")
-                .font(AppFont.regular(11, relativeTo: .caption2))
-                .foregroundStyle(.tertiary)
         }
-        .padding(.vertical, 12)
+        .padding(.vertical, 10)
         .padding(.horizontal, 4)
     }
 
-    private static let kandilliURL = URL(string: "http://www.koeri.boun.edu.tr/sismo/2/tr/")!
-    private static let repositoryURL = URL(string: "https://github.com/bedirdemir/depremolduorg-nuxtjs")!
+    private func arrowButton(
+        title: String,
+        systemImage: String,
+        isEnabled: Bool,
+        identifier: String,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            HStack(spacing: 4) {
+                if systemImage == "chevron.left" {
+                    Image(systemName: systemImage)
+                        .font(.system(size: 10, weight: .semibold))
+                }
+                Text(title)
+                    .font(AppFont.medium(13, relativeTo: .footnote))
+                if systemImage == "chevron.right" {
+                    Image(systemName: systemImage)
+                        .font(.system(size: 10, weight: .semibold))
+                }
+            }
+            .foregroundStyle(isEnabled ? .white : Color(uiColor: .tertiaryLabel))
+            .padding(.horizontal, 10)
+            .padding(.vertical, 7)
+            .background(isEnabled ? AppColor.secondary : Color(uiColor: .secondarySystemFill))
+            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        }
+        .buttonStyle(.plain)
+        .disabled(!isEnabled)
+        .accessibilityIdentifier(identifier)
+    }
+
+    private func pageButton(_ page: Int, action: @escaping () -> Void) -> some View {
+        let isCurrent = page == model.currentPage
+        return Button(action: action) {
+            Text("\(page)")
+                .font(AppFont.semiBold(13, relativeTo: .footnote))
+                .foregroundStyle(isCurrent ? .white : Color(uiColor: .label))
+                .frame(minWidth: 34, minHeight: 32)
+                .background(isCurrent ? AppColor.primary : Color(uiColor: .systemBackground))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8, style: .continuous)
+                        .stroke(
+                            isCurrent ? Color.clear : Color(uiColor: .separator),
+                            lineWidth: 1
+                        )
+                )
+                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        }
+        .buttonStyle(.plain)
+        .accessibilityIdentifier("pagination.page.\(page)")
+        .accessibilityLabel("Sayfa \(page)")
+        .accessibilityAddTraits(isCurrent ? [.isSelected] : [])
+    }
+
+    private func scrollToTop(_ proxy: ScrollViewProxy) {
+        withAnimation {
+            proxy.scrollTo(Self.listTopID, anchor: .top)
+        }
+    }
+
+    private static let listTopID = "earthquake.list.top"
 }

@@ -22,6 +22,7 @@ CC5D2C428C560DB1302360BB /* EarthquakeFeedFeatureModel.swift in Sources */ = {is
 B868C89E622BBA115D528FF2 /* EarthquakeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673FCD8A77F7F25E5A0FC339 /* EarthquakeListView.swift */; };
 CDC47DBFA50B218A07BB4AE0 /* EarthquakeLocationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949A8EC1A5D4F79A324D7AA /* EarthquakeLocationSheet.swift */; };
 0296F5766DE6EC72169BB7A4 /* EarthquakeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627B9412A0AF15C811079891 /* EarthquakeRowView.swift */; };
+11ABE395B546222C14CC6799 /* EarthquakeCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDE94AF3C18C03119653E72 /* EarthquakeCalloutView.swift */; };
 9781DADF9C469C78681E7CBA /* EarthquakeMapBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54907C9989869151662466B9 /* EarthquakeMapBridge.swift */; };
 827886A887598AA1B71CE805 /* EarthquakeMapFeatureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85D7073FAC871F5345A6EE /* EarthquakeMapFeatureModel.swift */; };
 B399A26DF907DD25574136B5 /* EarthquakeMapOverlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455E2477974F8948EFA47266 /* EarthquakeMapOverlays.swift */; };
@@ -84,6 +85,7 @@ FAEF94D347496747E8DA7591 /* EarthquakeLegendView.swift */ = {isa = PBXFileRefere
 673FCD8A77F7F25E5A0FC339 /* EarthquakeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeListView.swift; sourceTree = "<group>"; };
 4949A8EC1A5D4F79A324D7AA /* EarthquakeLocationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeLocationSheet.swift; sourceTree = "<group>"; };
 627B9412A0AF15C811079891 /* EarthquakeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeRowView.swift; sourceTree = "<group>"; };
+CFDE94AF3C18C03119653E72 /* EarthquakeCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeCalloutView.swift; sourceTree = "<group>"; };
 54907C9989869151662466B9 /* EarthquakeMapBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeMapBridge.swift; sourceTree = "<group>"; };
 DD85D7073FAC871F5345A6EE /* EarthquakeMapFeatureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeMapFeatureModel.swift; sourceTree = "<group>"; };
 455E2477974F8948EFA47266 /* EarthquakeMapOverlays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakeMapOverlays.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@ B908F89242872436068CFADB /* Faults.json */ = {isa = PBXFileReference; lastKnownF
 B825DD032B31B257BDDC16FA /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 30373D58AEEDA4A2131F96A0 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 FA71D9D812985025E7C53FC7 /* Local.example.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.example.xcconfig; sourceTree = "<group>"; };
+87F5C300942595C511FB9346 /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 BE1790B90ECBDFD5FADE3560 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 9DE0D7CD588F9B4C0F23BDAB /* Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Test.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -230,6 +233,7 @@ C6E329DFA4D61C5E75F8B455 /* Features */ = {
 				3FA8034490251B461DEF9A94,
 				455E2477974F8948EFA47266,
 				54907C9989869151662466B9,
+				CFDE94AF3C18C03119653E72,
 				DD85D7073FAC871F5345A6EE,
 			);
 			path = Map;
@@ -261,6 +265,7 @@ C6E329DFA4D61C5E75F8B455 /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				30373D58AEEDA4A2131F96A0,
+				87F5C300942595C511FB9346,
 				9DE0D7CD588F9B4C0F23BDAB,
 				B825DD032B31B257BDDC16FA,
 				BE1790B90ECBDFD5FADE3560,
@@ -474,6 +479,7 @@ DC482FE6EE57218E00B7B4BF = {
 				B868C89E622BBA115D528FF2,
 				CDC47DBFA50B218A07BB4AE0,
 				0296F5766DE6EC72169BB7A4,
+				11ABE395B546222C14CC6799,
 				9781DADF9C469C78681E7CBA,
 				827886A887598AA1B71CE805,
 				B399A26DF907DD25574136B5,
