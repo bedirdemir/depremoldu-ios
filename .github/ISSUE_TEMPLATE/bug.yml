@@ -1,0 +1,30 @@
+name: Bug report
+description: Hatalı davranış bildir
+title: "fix: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: Ne oldu?
+      description: Beklenen ve gerçekleşen davranış.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Yeniden üretme adımları
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Cihaz / iOS sürümü / uygulama sürümü
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Kanıt (ekran görüntüsü, log)
+    validations:
+      required: false
