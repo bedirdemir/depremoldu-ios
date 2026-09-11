@@ -37,22 +37,18 @@ final class DepremOlduAppUITests: XCTestCase {
         )
     }
 
-    func testPaginationMovesBetweenPages() {
+    func testListScrollsThroughManyFixtures() {
         let app = launchApp(arguments: ["-depremoldu-ui-many"])
 
         XCTAssertTrue(app.buttons["earthquake.row.ui-1"].waitForExistence(timeout: 10))
 
-        let next = app.buttons["pagination.next"]
+        let later = app.buttons["earthquake.row.ui-30"]
         var attempts = 0
-        while !next.isHittable, attempts < 15 {
+        while !later.exists, attempts < 15 {
             app.swipeUp()
             attempts += 1
         }
-        XCTAssertTrue(next.isHittable)
-        next.tap()
-
-        XCTAssertTrue(app.buttons["earthquake.row.ui-51"].waitForExistence(timeout: 10))
-        XCTAssertFalse(app.buttons["earthquake.row.ui-1"].exists)
+        XCTAssertTrue(later.exists)
     }
 
     func testLocationSheetOpensFromARow() {
@@ -139,6 +135,7 @@ final class DepremOlduAppUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Veri Kaynakları"].exists)
         XCTAssertTrue(app.staticTexts["Kandilli Rasathanesi (KOERI)"].exists)
         XCTAssertTrue(app.staticTexts["Deprem API"].exists)
+        XCTAssertTrue(app.staticTexts["Geliştirici Web Sitesi"].exists)
         XCTAssertTrue(
             app.staticTexts.matching(
                 NSPredicate(format: "label CONTAINS 'api.orhanaydogdu.com.tr'")

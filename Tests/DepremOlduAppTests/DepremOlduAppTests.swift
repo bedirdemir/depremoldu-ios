@@ -51,10 +51,10 @@ struct EarthquakeFeedFeatureModelTests {
         #expect(content.freshness == .fresh)
         #expect(content.refreshState == .idle)
         #expect(content.refreshFailure == nil)
-        #expect(model.countSummary == "1-12 / 12 deprem")
+        #expect(model.countSummary == "12 deprem")
     }
 
-    @Test("List shows at most 200 in pages of 50 and the map at most 500")
+    @Test("List shows at most 200 continuously and the map at most 500")
     func listAndMapLimits() async {
         let model = makeModel(repository: StubEarthquakeRepository.content(EarthquakeFixtures.feed(count: 600)))
         model.loadIfNeeded()
@@ -62,47 +62,13 @@ struct EarthquakeFeedFeatureModelTests {
 
         #expect(model.listEarthquakes.count == 200)
         #expect(model.mapEarthquakes.count == 500)
-        #expect(model.listPageCount == 4)
-        #expect(model.countSummary == "1-50 / 200 deprem")
+        #expect(model.listEarthquakes.first?.id == "fixture-0")
+        #expect(model.listEarthquakes.last?.id == "fixture-199")
+        #expect(model.countSummary == "200 deprem")
     }
 
-    @Test("Pagination slices pages of 50 and clamps at the boundaries")
-    func pagination() async {
-        let model = makeModel(repository: StubEarthquakeRepository.content(EarthquakeFixtures.feed(count: 120)))
-        model.loadIfNeeded()
-        await waitUntil { model.content != nil }
-
-        #expect(model.listPageCount == 3)
-        #expect(model.isFirstPage)
-        #expect(!model.isLastPage)
-        #expect(model.paginatedEarthquakes.count == 50)
-        #expect(model.paginatedEarthquakes.first?.id == "fixture-0")
-        #expect(model.countSummary == "1-50 / 120 deprem")
-
-        model.nextPage()
-        #expect(model.currentPage == 2)
-        #expect(model.paginatedEarthquakes.count == 50)
-        #expect(model.paginatedEarthquakes.first?.id == "fixture-50")
-        #expect(model.countSummary == "51-100 / 120 deprem")
-
-        model.nextPage()
-        #expect(model.currentPage == 3)
-        #expect(model.isLastPage)
-        #expect(model.paginatedEarthquakes.count == 20)
-        #expect(model.paginatedEarthquakes.first?.id == "fixture-100")
-        #expect(model.countSummary == "101-120 / 120 deprem")
-
-        model.nextPage()
-        #expect(model.currentPage == 3)
-
-        model.goToPage(0)
-        #expect(model.currentPage == 1)
-        model.previousPage()
-        #expect(model.currentPage == 1)
-    }
-
-    @Test("Refreshing with fewer records clamps the current page")
-    func paginationClampsAfterRefresh() async {
+    @Test("Refresh replaces the content and the count")
+    func refreshReplacesContent() async {
         let repository = TwoPhaseEarthquakeRepository(
             first: EarthquakeFixtures.feed(count: 120),
             second: EarthquakeFixtures.feed(count: 20)
@@ -110,16 +76,31 @@ struct EarthquakeFeedFeatureModelTests {
         let model = makeModel(repository: repository)
         model.loadIfNeeded()
         await waitUntil { model.content != nil }
-        model.goToPage(3)
-        #expect(model.currentPage == 3)
-        #expect(model.countSummary == "101-120 / 120 deprem")
+        #expect(model.countSummary == "120 deprem")
 
         await model.refresh()
         await waitUntil { model.listTotalCount == 20 }
 
-        #expect(model.currentPage == 1)
-        #expect(model.countSummary == "1-20 / 20 deprem")
-        #expect(model.paginatedEarthquakes.count == 20)
+        #expect(model.listEarthquakes.count == 20)
+        #expect(model.countSummary == "20 deprem")
+    }
+
+    @Test("Refresh shows the refreshing state while the network is in flight")
+    func refreshShowsRefreshingState() async {
+        let repository = GatedFeedRepository(earthquakes: EarthquakeFixtures.feed(count: 5))
+        let model = makeModel(repository: repository)
+        model.loadIfNeeded()
+        await waitUntil { model.content != nil }
+        #expect(model.content?.refreshState == .idle)
+
+        let refreshTask = Task { await model.refresh() }
+        await waitUntil { model.content?.refreshState == .refreshing }
+        #expect(model.content?.refreshState == .refreshing)
+        #expect(model.content?.earthquakes.count == 5)
+
+        repository.release()
+        await refreshTask.value
+        #expect(model.content?.refreshState == .idle)
     }
 
     @Test("Empty content has a zero summary")
@@ -276,6 +257,67 @@ struct EarthquakeMapFeatureModelTests {
         #expect(model.faultState == .failed)
         #expect(model.faultDataset == nil)
         #expect(!model.showsFaultLegend)
+    }
+}
+
+final class GatedFeedRepository: EarthquakeRepositoryProviding, @unchecked Sendable {
+    private let value: EarthquakeRepositoryValue
+    private let lock = NSLock()
+    private var callCount = 0
+    private var isReleased = false
+    private var releaseContinuation: CheckedContinuation<Void, Never>?
+
+    init(earthquakes: [Earthquake]) {
+        value = EarthquakeRepositoryValue(
+            earthquakes: earthquakes,
+            fetchedAt: Date(),
+            source: .network,
+            freshness: .fresh
+        )
+    }
+
+    func events(
+        policy: EarthquakeLoadPolicy = .normal
+    ) -> AsyncThrowingStream<EarthquakeRepositoryEvent, any Error> {
+        let index = lock.withLock {
+            callCount += 1
+            return callCount
+        }
+        let value = value
+        return AsyncThrowingStream { continuation in
+            Task {
+                if index > 1 {
+                    await self.waitForRelease()
+                }
+                continuation.yield(.value(value))
+                continuation.finish()
+            }
+        }
+    }
+
+    func release() {
+        let continuation: CheckedContinuation<Void, Never>? = lock.withLock {
+            isReleased = true
+            let pending = releaseContinuation
+            releaseContinuation = nil
+            return pending
+        }
+        continuation?.resume()
+    }
+
+    private func waitForRelease() async {
+        await withCheckedContinuation { continuation in
+            let alreadyReleased: Bool = lock.withLock {
+                if isReleased {
+                    return true
+                }
+                releaseContinuation = continuation
+                return false
+            }
+            if alreadyReleased {
+                continuation.resume()
+            }
+        }
     }
 }
 

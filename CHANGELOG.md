@@ -6,13 +6,13 @@ Bu dosya formatı [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) temel
 
 ### Changed
 
+- Uygulama, ürün ikonu (`depremolduappicon.png`) ve çizgi markası (brand-mark SVG'den üretilen raster template) ile güncellendi; marka üst başlıkta ve "Son Depremler" sekmesinde kullanılıyor. Aynı ikon Android portunda da kullanılacak.
 - Uygulama yalnızca açık modda çalışır; sistem koyu modda da açık palet korunur (`UIUserInterfaceStyle = Light`).
-- Üst şerit, sekme geçişlerinde animasyonsuz sabit bir başlığa dönüştürüldü; `depremoldu.org` sola hizalandı, Yenile yalnız veri sekmelerinde görünür.
-- Son Depremler listesi sıkıştırıldı (boşluk ve punto web düzeyine indirildi) ve web paritesiyle 50'lik sayfalama eklendi: Önceki/Sonraki, sayfa numaraları ve `1-50 / 200 deprem` sayımı.
-- Haritada deprem seçimi alt kart yerine noktanın üstünde popup olarak gösterilir; popup'taki "Detay" bağlantısı kaldırıldı.
-- Koordinat gösterimi kayan nokta artıklarından arındırıldı (`39.16, 38.45`).
-- Liste altındaki atıf/bağlantı bloğu kaldırıldı; veri atıfı ve API kullanım bilgisi Hakkında ekranının ilk bölümüne, API bağlantısı Bağlantılar bölümüne taşındı.
-- Afet Bilinci kapanış metni genişletildi ve aynı metin Hakkında ekranına eklendi.
+- Üst şerit, sekme geçişlerinde animasyonsuz sabit bir başlığa dönüştürüldü; `depremoldu.org` solda, Yenile yalnız veri sekmelerinde. Yenile sırasında düğmede spinner görünür ve istek uçuşta çoklanmaz.
+- Liste native sürekli akışa çevrildi: 200 kayıt tek listede, sayfalama araçları yerine pull-to-refresh; alt sayaç "200 deprem".
+- Satır divider'ları soldan sağa tam genişlikte; satır arası dikey boşluk yarıya indirildi, sol boşluk azaltıldı, bölge adları ve büyüklük değerleri kalınlaştırıldı, legend ile liste arası boşluk kaldırıldı. Arka plan renkleri web'deki soldan sağa gradient ile birebir aynıdır (accent %8.5 -> beyaz, 20%/90% durak).
+- Haritada deprem seçimi noktanın üstünde popup olarak gösterilir; "Detay" bağlantısı yok. Koordinatlar kayan nokta artıklarından arındırıldı.
+- Liste altındaki atıf/bağlantı bloğu kaldırıldı; veri/API atıfları Hakkında'nın ilk bölümüne, API ve Geliştirici Web Sitesi (`bedirdemir.com`) bağlantıları Bağlantılar bölümüne taşındı. Afet Bilinci kapanış metni genişletildi ve Hakkında'ya eklendi.
 
 ## [1.0.0] - 2026-09-12
 
