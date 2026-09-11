@@ -14,11 +14,24 @@ struct AboutView: View {
         NavigationStack {
             List {
                 Section {
-                    VStack(alignment: .leading, spacing: 6) {
+                    VStack(alignment: .leading, spacing: 8) {
                         BrandTitle()
-                        Text("Türkiye'deki son depremler ve deprem haritası")
-                            .font(AppFont.regular(14, relativeTo: .subheadline))
-                            .foregroundStyle(.secondary)
+                        Text(
+                            "Veriler Boğaziçi Üniversitesi Kandilli Rasathanesi ve Deprem "
+                                + "Araştırma Enstitüsü Bölgesel Deprem-Tsunami İzleme ve "
+                                + "Değerlendirme Merkezi'nden gelmektedir ve "
+                                + "api.orhanaydogdu.com.tr aracılığıyla sunulmaktadır."
+                        )
+                        .font(AppFont.regular(13, relativeTo: .footnote))
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                        Text(
+                            "Afet Bilinci ekranındaki içerikler ilgili kaynaklara aittir; "
+                                + "bağlantılar harici sitelerde açılır."
+                        )
+                        .font(AppFont.regular(13, relativeTo: .footnote))
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
                         Text(versionText)
                             .font(AppFont.regular(12, relativeTo: .caption))
                             .foregroundStyle(.tertiary)
@@ -44,6 +57,11 @@ struct AboutView: View {
                         title: "depremoldu.org",
                         detail: "Web sitesi",
                         url: URL(string: "https://www.depremoldu.org")!
+                    )
+                    linkRow(
+                        title: "Deprem API",
+                        detail: "api.orhanaydogdu.com.tr",
+                        url: URL(string: "https://api.orhanaydogdu.com.tr/deprem/api-docs/")!
                     )
                     linkRow(
                         title: "GitHub",
