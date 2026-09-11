@@ -27,8 +27,32 @@ final class DepremOlduAppUITests: XCTestCase {
 
         let row = app.buttons["earthquake.row.ui-1"]
         XCTAssertTrue(row.waitForExistence(timeout: 10))
-        XCTAssertTrue(row.label.contains("SUGUL-DARENDE"))
+        XCTAssertTrue(row.label.contains("FIXTURE REGION 1"))
         XCTAssertTrue(row.label.contains("2.0"))
+
+        XCTAssertFalse(
+            app.staticTexts.matching(
+                NSPredicate(format: "label CONTAINS 'Kandilli'")
+            ).firstMatch.exists
+        )
+    }
+
+    func testPaginationMovesBetweenPages() {
+        let app = launchApp(arguments: ["-depremoldu-ui-many"])
+
+        XCTAssertTrue(app.buttons["earthquake.row.ui-1"].waitForExistence(timeout: 10))
+
+        let next = app.buttons["pagination.next"]
+        var attempts = 0
+        while !next.isHittable, attempts < 15 {
+            app.swipeUp()
+            attempts += 1
+        }
+        XCTAssertTrue(next.isHittable)
+        next.tap()
+
+        XCTAssertTrue(app.buttons["earthquake.row.ui-51"].waitForExistence(timeout: 10))
+        XCTAssertFalse(app.buttons["earthquake.row.ui-1"].exists)
     }
 
     func testLocationSheetOpensFromARow() {
@@ -114,6 +138,12 @@ final class DepremOlduAppUITests: XCTestCase {
         XCTAssertTrue(app.navigationBars["Hakkında"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["Veri Kaynakları"].exists)
         XCTAssertTrue(app.staticTexts["Kandilli Rasathanesi (KOERI)"].exists)
+        XCTAssertTrue(app.staticTexts["Deprem API"].exists)
+        XCTAssertTrue(
+            app.staticTexts.matching(
+                NSPredicate(format: "label CONTAINS 'api.orhanaydogdu.com.tr'")
+            ).firstMatch.exists
+        )
         app.buttons["Kapat"].tap()
         XCTAssertFalse(app.navigationBars["Hakkında"].waitForExistence(timeout: 2))
     }

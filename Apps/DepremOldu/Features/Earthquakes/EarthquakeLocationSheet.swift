@@ -96,14 +96,14 @@ struct EarthquakeLocationSheet: View {
                 if let coordinate = earthquake.coordinate {
                     detailRow(
                         label: "Koordinat",
-                        value: "\(String(coordinate.latitude)), \(String(coordinate.longitude))"
+                        value: coordinate.displayText
                     )
                 }
             }
             Spacer(minLength: 0)
         }
         .padding(14)
-        .background(palette.rowGradient(for: .light))
+        .background(palette.rowGradient)
         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 12, style: .continuous)

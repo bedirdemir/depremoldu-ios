@@ -5,7 +5,6 @@ struct EarthquakeRowView: View {
     let earthquake: Earthquake
     let relativeTime: String
     let onShowLocation: () -> Void
-    @Environment(\.colorScheme) private var colorScheme
 
     private var palette: MagnitudePalette {
         earthquake.magnitudeClass.palette
@@ -18,11 +17,11 @@ struct EarthquakeRowView: View {
 
     var body: some View {
         Button(action: onShowLocation) {
-            HStack(alignment: .center, spacing: 20) {
+            HStack(alignment: .center, spacing: 14) {
                 badge
-                VStack(alignment: .leading, spacing: 3) {
+                VStack(alignment: .leading, spacing: 2) {
                     Text(earthquake.region)
-                        .font(AppFont.semiBold(15, relativeTo: .subheadline))
+                        .font(AppFont.semiBold(14, relativeTo: .subheadline))
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
@@ -30,25 +29,25 @@ struct EarthquakeRowView: View {
                     infoLine(
                         systemImage: "clock",
                         text: relativeTime,
-                        font: AppFont.medium(14, relativeTo: .footnote)
+                        font: AppFont.medium(13, relativeTo: .footnote)
                     )
                     infoLine(
                         systemImage: "calendar",
                         text: earthquake.displayDateTime,
-                        font: AppFont.regular(14, relativeTo: .footnote),
+                        font: AppFont.regular(13, relativeTo: .footnote),
                         muted: true
                     )
                     infoLine(
                         systemImage: "arrow.down",
                         text: "\(earthquake.formattedDepth) km",
-                        font: AppFont.regular(14, relativeTo: .footnote),
+                        font: AppFont.regular(13, relativeTo: .footnote),
                         muted: true
                     )
                     HStack(spacing: 4) {
                         Image(systemName: "mappin.and.ellipse")
-                            .font(.system(size: 13, weight: .regular))
+                            .font(.system(size: 12, weight: .regular))
                         Text("Konumu görüntüle")
-                            .font(AppFont.regular(14, relativeTo: .footnote))
+                            .font(AppFont.regular(13, relativeTo: .footnote))
                             .underline()
                     }
                     .foregroundStyle(.secondary)
@@ -56,12 +55,12 @@ struct EarthquakeRowView: View {
                 }
                 Spacer(minLength: 0)
             }
-            .padding(.vertical, 12)
+            .padding(.vertical, 10)
             .padding(.horizontal, 4)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .listRowBackground(palette.rowGradient(for: colorScheme))
+        .listRowBackground(palette.rowGradient)
         .accessibilityIdentifier("earthquake.row.\(earthquake.id)")
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(accessibilityText)
@@ -69,12 +68,12 @@ struct EarthquakeRowView: View {
     }
 
     private var badge: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 3) {
             Text(earthquake.formattedMagnitude)
-                .font(AppFont.semiBold(22, relativeTo: .title2))
+                .font(AppFont.semiBold(20, relativeTo: .title2))
                 .monospacedDigit()
             Text(earthquake.scale)
-                .font(AppFont.regular(11, relativeTo: .caption2))
+                .font(AppFont.regular(10, relativeTo: .caption2))
         }
         .frame(width: 64, height: 96)
         .background(palette.badgeBackground)
@@ -88,11 +87,11 @@ struct EarthquakeRowView: View {
         font: Font,
         muted: Bool = false
     ) -> some View {
-        HStack(spacing: 6) {
+        HStack(spacing: 5) {
             Image(systemName: systemImage)
-                .font(.system(size: 13, weight: .regular))
+                .font(.system(size: 12, weight: .regular))
                 .foregroundStyle(muted ? .secondary : .primary)
-                .frame(width: 16)
+                .frame(width: 15)
             Text(text)
                 .font(font)
                 .foregroundStyle(muted ? .secondary : .primary)

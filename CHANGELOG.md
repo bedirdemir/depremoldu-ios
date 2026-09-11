@@ -4,6 +4,16 @@ Bu dosya formatı [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) temel
 
 ## [Unreleased]
 
+### Changed
+
+- Uygulama yalnızca açık modda çalışır; sistem koyu modda da açık palet korunur (`UIUserInterfaceStyle = Light`).
+- Üst şerit, sekme geçişlerinde animasyonsuz sabit bir başlığa dönüştürüldü; `depremoldu.org` sola hizalandı, Yenile yalnız veri sekmelerinde görünür.
+- Son Depremler listesi sıkıştırıldı (boşluk ve punto web düzeyine indirildi) ve web paritesiyle 50'lik sayfalama eklendi: Önceki/Sonraki, sayfa numaraları ve `1-50 / 200 deprem` sayımı.
+- Haritada deprem seçimi alt kart yerine noktanın üstünde popup olarak gösterilir; popup'taki "Detay" bağlantısı kaldırıldı.
+- Koordinat gösterimi kayan nokta artıklarından arındırıldı (`39.16, 38.45`).
+- Liste altındaki atıf/bağlantı bloğu kaldırıldı; veri atıfı ve API kullanım bilgisi Hakkında ekranının ilk bölümüne, API bağlantısı Bağlantılar bölümüne taşındı.
+- Afet Bilinci kapanış metni genişletildi ve aynı metin Hakkında ekranına eklendi.
+
 ## [1.0.0] - 2026-09-12
 
 ### Added

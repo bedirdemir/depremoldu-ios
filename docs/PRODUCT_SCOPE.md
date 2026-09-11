@@ -8,14 +8,14 @@ Kaynak ürün: `depremolduorg-nuxtjs` (Nuxt 4 + Vue 3 + Pinia + Tailwind). Web �
 
 | Web davranışı | iOS karşılığı | Durum |
 |---|---|---|
-| Son 200 deprem listesi (50/sayfa sayfalama) | Son 200 deprem, native sürekli liste + pull-to-refresh | Uygulandı (sayfalama yerine native liste) |
+| Son 200 deprem listesi (50/sayfa sayfalama) | Son 200 deprem, 50'lik sayfalama (Önceki/Sonraki + sayfa numaraları) + pull-to-refresh | Uygulandı |
 | Büyüklük sınıfı renkleri ve rozeti (ML) | Aynı eşikler, aynı renkler, 64×96 pt rozet | Uygulandı |
 | Göreli zaman (dayjs `tr`) | `TurkishRelativeTimeFormatter`, 30 sn tick | Uygulandı |
 | Tarih-saat, derinlik, "Konumu görüntüle" | Aynı bilgi satırları; satır tamamı dokunulabilir | Uygulandı |
-| "X-Y / N deprem" sayacı | Footer'da aynı metin | Uygulandı |
+| "X-Y / N deprem" sayacı | Sayfalama altında aynı metin (`1-50 / 200 deprem`) | Uygulandı |
 | "Yenile" butonu | Toolbar butonu + pull-to-refresh | Uygulandı |
 | Konum modalı (Leaflet + pin) | MapKit sheet'i + bilgi kartı | Uygulandı |
-| Footer atıf ve GitHub bağlantısı | Liste footer'ı + Hakkında ekranı | Uygulandı |
+| Footer atıf ve GitHub bağlantısı | Liste altı sadeleştirildi; atıf/bağlantılar Hakkında ekranında | Uygulandı |
 | 15 sn bellek/localStorage cache | 15 sn fresh + 24 saat stale disk cache | Uygulandı (ADR-0005) |
 
 ### Deprem Haritası
@@ -27,7 +27,7 @@ Kaynak ürün: `depremolduorg-nuxtjs` (Nuxt 4 + Vue 3 + Pinia + Tailwind). Web �
 | "SON 500 DEPREM" legend kutusu | Sağ üst legend kartı | Uygulandı |
 | Fay hatları katmanı (GINRAS), varsayılan kapalı | "Fay Hatları" chip'i, varsayılan kapalı | Uygulandı |
 | CONF renkleri ve RATE/zoom ağırlıkları | `FaultMapStylePolicy` birebir formül | Uygulandı |
-| Popup (bölge, zaman, büyüklük, derinlik, koordinat) | Alt seçim kartı + "Detay" sheet'i | Uygulandı |
+| Popup (bölge, zaman, büyüklük, derinlik, koordinat) | Noktanın üstünde MapKit callout + SwiftUI içerik; detay bağlantısı yok | Uygulandı |
 | OSM/CARTO açık tema | MapKit `mutedStandard` | Native karşılık (ADR-0008) |
 | Fay çizgisi popup açıklamaları (uzun bilimsel metin) | — | Kapsam dışı (ADR-0006) |
 
@@ -35,15 +35,15 @@ Kaynak ürün: `depremolduorg-nuxtjs` (Nuxt 4 + Vue 3 + Pinia + Tailwind). Web �
 
 | Web davranışı | iOS karşılığı | Durum |
 |---|---|---|
-| 14 içerik kartı (AFAD, Evrim Ağacı, YouTube, MTA) | Aynı başlık/özet/kaynak/aksiyon ve URL'ler | Uygulandı |
+| 14 içerik kartı (AFAD, Evrim Ağacı, YouTube, MTA) | Aynı başlık/özet/kaynak/aksiyon ve URL'ler; genişletilmiş kapanış metni | Uygulandı |
 | Kartlar harici sekmede açılır | `SFSafariViewController` sheet'i | Uygulandı |
 
 ### Web'de olmayan native eklemeler
 
 - Boş durum, hata durumu ve "Tekrar Dene" eylemi (web hataları sessizce yutar).
-- Hakkında ekranı: sürüm, veri kaynakları, sorumluluk notu.
+- Hakkında ekranı: veri/API atıfları, sürüm, kaynak ve bağlantılar, sorumluluk notu.
 - Çevrimdışıyken stale veri gösterimi ve yenileme hatası bandı.
-- Koyu mod desteği.
+- Yalnız açık mod; koyu mod bilinçli olarak desteklenmez (marka görünümü sabittir).
 
 ## Kapsam dışı (bilinçli)
 

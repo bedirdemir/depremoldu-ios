@@ -4,33 +4,27 @@ struct AwarenessView: View {
     @State private var safariItem: SafariItem?
 
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                LazyVStack(spacing: 16) {
-                    ForEach(AwarenessContent.items) { item in
-                        AwarenessCardView(item: item) {
-                            safariItem = SafariItem(url: item.url)
-                        }
+        ScrollView {
+            LazyVStack(spacing: 16) {
+                ForEach(AwarenessContent.items) { item in
+                    AwarenessCardView(item: item) {
+                        safariItem = SafariItem(url: item.url)
                     }
+                }
 
-                    Text("İçerikler ilgili kaynaklara aittir; bağlantılar harici sitelerde açılır.")
-                        .font(AppFont.regular(11, relativeTo: .caption2))
-                        .foregroundStyle(.tertiary)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.top, 4)
-                }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 12)
+                Text(
+                    "Afet Bilinci ekranındaki içerikler ilgili kaynaklara aittir; "
+                        + "bağlantılar harici sitelerde açılır."
+                )
+                .font(AppFont.regular(11, relativeTo: .caption2))
+                .foregroundStyle(.tertiary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, 4)
             }
-            .background(Color(uiColor: .systemBackground))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    BrandTitle()
-                }
-            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 12)
         }
-        .tint(AppColor.primary)
+        .background(Color(uiColor: .systemBackground))
         .sheet(item: $safariItem) { item in
             SafariView(url: item.url)
         }
