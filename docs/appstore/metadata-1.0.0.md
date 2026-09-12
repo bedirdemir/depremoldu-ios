@@ -55,7 +55,14 @@ Veriler Boğaziçi Üniversitesi Kandilli Rasathanesi ve Deprem Araştırma Enst
 
 - Tüm kategoriler: Yok / Hiçbiri. Sonuç 4+.
 
-## Ekran görüntüleri (6.9")
+## Ekran görüntüleri
+
+App Store Connect slotu 6.5" boyutları istiyor (1242×2688 veya 1284×2778). İki set hazırdır:
+
+- **6.5" (önerilen, hata veren slot için): `docs/appstore/screenshots-65/`** — 1284×2778, iPhone 13 Pro Max simülatöründen native.
+- 6.9" (ayrı 6.9" slotu varsa): `docs/appstore/screenshots/` — 1320×2868, iPhone 17 Pro Max simülatöründen.
+
+Dosyalar (her iki sette aynı adlar):
 
 1. `01-son-depremler.png` — liste ve büyüklük skalası
 2. `02-harita-fay-hatlari.png` — harita + fay katmanı + legend
