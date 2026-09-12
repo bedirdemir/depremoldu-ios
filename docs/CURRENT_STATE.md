@@ -22,7 +22,8 @@ Fiziksel kabul öncesi ürün geri bildirimleri uygulandı: yalnız açık mod, 
 ## TestFlight (internal) kaydı
 
 - 2026-09-12: `1.0.0` (build 1), `test` @ `7a486a9` kaynağından App Store Connect'e yüklendi; paket processing. Ayrıntı: [docs/releases/1.0.0-testflight.md](releases/1.0.0-testflight.md).
-- 2026-09-12: Ürün sahibi internal TestFlight kabulünü verdi (sorun yok). `test -> main` promotion yapıldı; repo açık kaynak (public) yayınlandı ve uygulama GitHub bağlantısı `bedirdemir/depremoldu-ios` oldu. Build `1.0.0 (2)` TestFlight'a yüklendi; App Store gönderimi için metadata/ekran görüntüleri hazır: [docs/appstore/metadata-1.0.0.md](appstore/metadata-1.0.0.md). Gizlilik: `https://depremoldu.org/gizlilik`. App Store Connect formu ve gönderim kullanıcı adımıdır.
+- 2026-09-12: Build `1.0.0 (2)` (açık kaynak repo bağlantısı revizyonu) TestFlight'ta ürün sahibi tarafından kabul edildi (sorun yok). `test -> main` promotion tamamlandı ve final `v1.0.0` tag'i oluşturuldu.
+- App Store gönderimi için her şey hazır: metadata + 6.5" ekran görüntüleri (`docs/appstore/`, 1284×2778; harita karesi tam yüklenmiş olarak yeniden çekildi), gizlilik URL'si `https://depremoldu.org/gizlilik`, upload edilmiş build `1.0.0 (2)`. **App Store Connect formu ve Submit adımı kullanıcıya aittir.**
 
 ## Bekleyen insan kabulü
 
