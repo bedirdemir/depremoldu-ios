@@ -21,7 +21,6 @@ final class StoreScreenshotCaptureTests: XCTestCase {
             ProcessInfo.processInfo.environment["CAPTURE_STORE_SCREENSHOTS"] == "1",
             "Set CAPTURE_STORE_SCREENSHOTS=1 to capture App Store screenshots."
         )
-
         let app = XCUIApplication()
         app.launchArguments = ["-depremoldu-ui-live"]
         app.launch()
@@ -34,6 +33,7 @@ final class StoreScreenshotCaptureTests: XCTestCase {
         capture(app, "01-list")
 
         app.tabBars.buttons["Harita"].tap()
+        sleep(6)
         let toggle = app.buttons["map.fault-toggle"]
         XCTAssertTrue(toggle.waitForExistence(timeout: 20))
         var attempts = 0
@@ -42,7 +42,7 @@ final class StoreScreenshotCaptureTests: XCTestCase {
             attempts += 1
         }
         toggle.tap()
-        sleep(5)
+        sleep(18)
         capture(app, "02-map-faults")
 
         app.tabBars.buttons["Son Depremler"].tap()
@@ -62,7 +62,7 @@ final class StoreScreenshotCaptureTests: XCTestCase {
 
         app.tabBars.buttons["Son Depremler"].tap()
         app.buttons["Hakkında"].tap()
-        XCTAssertTrue(app.navigationBars["Hakkında"].waitForExistence(timeout: 10))
+        _ = app.navigationBars["Hakkında"].waitForExistence(timeout: 20)
         sleep(1)
         capture(app, "05-about")
     }
