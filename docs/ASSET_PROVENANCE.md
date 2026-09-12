@@ -20,7 +20,7 @@ Bu belge uygulama paketindeki üçüncü taraf varlıkları ve doğrulama tarihi
 
 - Kaynak: web deposu `public/FaultData/AFEAD_*.kmz` (GINRAS/AFEAD 2018 diri fay verisi).
 - Üretim: `scripts/build_fault_data.py` KMZ -> `Apps/DepremOldu/Resources/Faults.json` (5693 çizgi, 46328 nokta, ~1.1 MiB). Uzun bilimsel referans blokları bilinçli olarak çıkarılmıştır (ADR-0006).
-- Atıf: harita legend'ında ve Hakkında ekranında "GINRAS/AFEAD" olarak görünür.
+- Atıf: harita legend'ında ve Hakkında ekranında "GINRAS/AFEAD" olarak görünür; bağlantı `http://neotec.ginras.ru/` adresine gider.
 
 ## Deprem verisi
 

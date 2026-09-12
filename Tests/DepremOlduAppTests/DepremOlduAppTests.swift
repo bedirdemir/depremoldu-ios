@@ -399,6 +399,20 @@ struct AwarenessContentTests {
     }
 }
 
+@Suite("About links")
+struct AboutLinksTests {
+    @Test("GINRAS points at the GINRAS service and the remaining links are intact")
+    func links() {
+        #expect(AboutLinks.ginras.host == "neotec.ginras.ru")
+        #expect(AboutLinks.ginras.absoluteString == "http://neotec.ginras.ru/")
+        #expect(AboutLinks.koeri.host == "www.koeri.boun.edu.tr")
+        #expect(AboutLinks.website.absoluteString == "https://www.depremoldu.org")
+        #expect(AboutLinks.depremAPI.host == "api.orhanaydogdu.com.tr")
+        #expect(AboutLinks.developerWebsite.absoluteString == "https://bedirdemir.com")
+        #expect(AboutLinks.repository.host == "github.com")
+    }
+}
+
 @Suite("UI testing fixtures")
 struct UITestingFixtureTests {
     @Test("Fixture feed is deterministic and supports every magnitude class")
