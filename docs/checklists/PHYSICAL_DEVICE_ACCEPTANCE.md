@@ -14,7 +14,7 @@ Durum: **Not Run** (bekliyor). Ürün sahibi tarafından doldurulur.
 - [ ] İlk açılış: liste yükleniyor, 200 kayıt ve doğru sayım görünüyor.
 - [ ] Uygulama ikonu ana ekranda ürün ikonu (`depremolduappicon`) olarak görünüyor.
 - [ ] Pull-to-refresh ve toolbar Yenile: veri güncelleniyor.
-- [ ] Satıra dokun: konum sheet'i doğru merkez ve pin ile açılıyor.
+- [ ] Satıra dokun: konum sheet'i içeriğe sığan kısmi yükseklikte, doğru merkez ve pin ile açılıyor.
 - [ ] Harita: 500 marker, sınıf renkleri ve boyutları doğru.
 - [ ] Fay Hatları chip'i: veri yükleniyor, çizgiler doğru renk/kalınlıkta; zoom ile kalınlık değişiyor.
 - [ ] Marker seçimi: popup noktanın üstünde doğru bilgiyle açılıyor; detay bağlantısı yok.

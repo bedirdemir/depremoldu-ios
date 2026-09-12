@@ -17,7 +17,7 @@ Son güncelleme: 2026-09-12
 
 ## Kabul revizyonu (2026-09-12)
 
-Fiziksel kabul öncesi ürün geri bildirimleri uygulandı: yalnız açık mod, sabit/sol hizalı başlık, ürün ikonu ve marka çizgisi, native sürekli liste (sayfalama kaldırıldı), tam genişlik divider ve sıkı satırlar, nokta üstü map popup'ı, Yenile spinner'ı, Hakkında metin/bağlantı güncellemeleri. Ayrıntı: CHANGELOG `[Unreleased]`, ADR-0009 ve ADR-0010. Fiziksel cihaz turu bu revizyonla tekrarlanacaktır.
+Fiziksel kabul öncesi ürün geri bildirimleri uygulandı: yalnız açık mod, sabit/sol hizalı başlık, ürün ikonu ve marka çizgisi, native sürekli liste (sayfalama kaldırıldı), tam genişlik divider ve sıkı satırlar, nokta üstü map popup'ı, Yenile spinner'ı, Hakkında metin/bağlantı güncellemeleri, içeriğe göre boyutlanan konum sheet'i ve son ince ayarlar. Ayrıntı: CHANGELOG `[Unreleased]`, ADR-0009 ve ADR-0010. Fiziksel cihaz turu bu revizyonla tekrarlanacaktır.
 
 ## Bekleyen insan kabulü
 
