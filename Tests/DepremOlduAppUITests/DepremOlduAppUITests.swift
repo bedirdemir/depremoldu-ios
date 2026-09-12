@@ -100,12 +100,20 @@ final class DepremOlduAppUITests: XCTestCase {
         XCTAssertTrue(lastCard.exists)
     }
 
-    func testRefreshButtonKeepsListVisible() {
+    func testPullToRefreshKeepsListVisible() {
+        let app = launchApp()
+
+        let row = app.buttons["earthquake.row.ui-1"]
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        app.swipeDown()
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+    }
+
+    func testTopLoadingIndicatorIsGoneAfterLaunch() {
         let app = launchApp()
 
         XCTAssertTrue(app.buttons["earthquake.row.ui-1"].waitForExistence(timeout: 10))
-        app.buttons["toolbar.refresh"].tap()
-        XCTAssertTrue(app.buttons["earthquake.row.ui-1"].waitForExistence(timeout: 10))
+        XCTAssertFalse(app.otherElements["earthquake.top-loading"].exists)
     }
 
     func testFailureStateOffersRetry() {
