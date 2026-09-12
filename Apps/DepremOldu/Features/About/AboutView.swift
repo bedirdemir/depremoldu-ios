@@ -43,12 +43,12 @@ struct AboutView: View {
                     linkRow(
                         title: "Kandilli Rasathanesi (KOERI)",
                         detail: "Deprem verileri",
-                        url: URL(string: "http://www.koeri.boun.edu.tr/sismo/2/tr/")!
+                        url: AboutLinks.koeri
                     )
                     linkRow(
                         title: "GINRAS / AFEAD",
                         detail: "Fay hattı verileri (2018)",
-                        url: URL(string: "https://www.depremoldu.org")!
+                        url: AboutLinks.ginras
                     )
                 }
 
@@ -56,22 +56,22 @@ struct AboutView: View {
                     linkRow(
                         title: "depremoldu.org",
                         detail: "Web sitesi",
-                        url: URL(string: "https://www.depremoldu.org")!
+                        url: AboutLinks.website
                     )
                     linkRow(
                         title: "Deprem API",
                         detail: "api.orhanaydogdu.com.tr",
-                        url: URL(string: "https://api.orhanaydogdu.com.tr/deprem/api-docs/")!
+                        url: AboutLinks.depremAPI
                     )
                     linkRow(
                         title: "Geliştirici Web Sitesi",
                         detail: "bedirdemir.com",
-                        url: URL(string: "https://bedirdemir.com")!
+                        url: AboutLinks.developerWebsite
                     )
                     linkRow(
                         title: "GitHub",
                         detail: "Açık kaynak depo",
-                        url: URL(string: "https://github.com/bedirdemir/depremolduorg-nuxtjs")!
+                        url: AboutLinks.repository
                     )
                 }
 
