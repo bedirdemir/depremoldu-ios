@@ -134,6 +134,7 @@ final class DepremOlduAppUITests: XCTestCase {
         XCTAssertTrue(app.navigationBars["Hakkında"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["Veri Kaynakları"].exists)
         XCTAssertTrue(app.staticTexts["Kandilli Rasathanesi (KOERI)"].exists)
+        XCTAssertTrue(app.staticTexts["GINRAS / AFEAD"].exists)
         XCTAssertTrue(app.staticTexts["Deprem API"].exists)
         XCTAssertTrue(app.staticTexts["Geliştirici Web Sitesi"].exists)
         XCTAssertTrue(
