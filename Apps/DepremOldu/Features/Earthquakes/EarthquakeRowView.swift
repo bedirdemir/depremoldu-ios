@@ -57,7 +57,7 @@ struct EarthquakeRowView: View {
                     }
                     Spacer(minLength: 0)
                 }
-                .padding(.vertical, 5)
+                .padding(.vertical, 5.5)
                 .padding(.leading, 12)
                 .padding(.trailing, 8)
 
