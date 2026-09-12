@@ -5,8 +5,14 @@ import DepremOlduDomain
 struct EarthquakeLocationSheet: View {
     let earthquake: Earthquake
     @Environment(\.dismiss) private var dismiss
+    @State private var contentHeight: CGFloat
 
     private let relativeTimeFormatter = TurkishRelativeTimeFormatter()
+
+    init(earthquake: Earthquake) {
+        self.earthquake = earthquake
+        _contentHeight = State(initialValue: earthquake.coordinate == nil ? 320 : 520)
+    }
 
     private var palette: MagnitudePalette {
         earthquake.magnitudeClass.palette
@@ -41,7 +47,7 @@ struct EarthquakeLocationSheet: View {
                             }
                         }
                         .mapStyle(.standard(pointsOfInterest: .excludingAll))
-                        .frame(height: 360)
+                        .frame(height: 300)
                         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                     } else {
                         Text("Bu deprem için konum bilgisi bulunmuyor.")
@@ -55,6 +61,11 @@ struct EarthquakeLocationSheet: View {
                     detailCard
                 }
                 .padding(16)
+                .onGeometryChange(for: CGFloat.self) { proxy in
+                    proxy.size.height
+                } action: { newValue in
+                    contentHeight = newValue
+                }
             }
             .accessibilityIdentifier("location.sheet")
             .navigationTitle("Deprem Konumu")
@@ -69,6 +80,12 @@ struct EarthquakeLocationSheet: View {
             }
         }
         .tint(AppColor.primary)
+        .presentationDetents([.height(detentHeight)])
+        .presentationDragIndicator(.visible)
+    }
+
+    private var detentHeight: CGFloat {
+        min(max(contentHeight + 60, 320), 760)
     }
 
     private var detailCard: some View {
