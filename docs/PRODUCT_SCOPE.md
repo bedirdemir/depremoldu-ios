@@ -35,7 +35,7 @@ Kaynak ürün: `depremolduorg-nuxtjs` (Nuxt 4 + Vue 3 + Pinia + Tailwind). Web �
 
 | Web davranışı | iOS karşılığı | Durum |
 |---|---|---|
-| 14 içerik kartı (AFAD, Evrim Ağacı, YouTube, MTA) | Aynı başlık/özet/kaynak/aksiyon ve URL'ler; genişletilmiş kapanış metni | Uygulandı |
+| 14 içerik kartı (AFAD, Evrim Ağacı, YouTube, MTA) | Aynı başlık/özet/kaynak/aksiyon ve URL'ler; kapanış metni Hakkında'da | Uygulandı |
 | Kartlar harici sekmede açılır | `SFSafariViewController` sheet'i | Uygulandı |
 
 ### Web'de olmayan native eklemeler
@@ -44,6 +44,7 @@ Kaynak ürün: `depremolduorg-nuxtjs` (Nuxt 4 + Vue 3 + Pinia + Tailwind). Web �
 - Hakkında ekranı: veri/API atıfları, sürüm, kaynak ve bağlantılar, sorumluluk notu.
 - Çevrimdışıyken stale veri gösterimi ve yenileme hatası bandı.
 - Yalnız açık mod; koyu mod bilinçli olarak desteklenmez (marka görünümü sabittir).
+- Konum sheet'i içeriğe göre boyutlanır (harita + bilgi kutusu).
 - Marka çizgisi (ürün ikonundaki sismograf hattı) üst başlıkta ve Son Depremler sekmesinde kullanılır; aynı ikon Android portunda da geçerlidir.
 - Hakkında'da Geliştirici Web Sitesi (`bedirdemir.com`) bağlantısı.
 

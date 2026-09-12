@@ -13,6 +13,7 @@ struct EarthquakeLegendBar: View {
         .shadow(color: .black.opacity(0.05), radius: 2, y: 1)
         .padding(.horizontal, 8)
         .padding(.top, 6)
+        .padding(.bottom, 6)
         .accessibilityIdentifier("earthquake.legend")
         .accessibilityElement(children: .combine)
         .accessibilityLabel("Büyüklük aralıkları: Küçük, Orta, Büyük, Çok Büyük")

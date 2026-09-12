@@ -11,15 +11,6 @@ struct AwarenessView: View {
                         safariItem = SafariItem(url: item.url)
                     }
                 }
-
-                Text(
-                    "Afet Bilinci ekranındaki içerikler ilgili kaynaklara aittir; "
-                        + "bağlantılar harici sitelerde açılır."
-                )
-                .font(AppFont.regular(11, relativeTo: .caption2))
-                .foregroundStyle(.tertiary)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 4)
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 12)
