@@ -14,7 +14,7 @@ DEVELOPMENT_TEAM =
 // User-visible release target. Normative policy: docs/BRANCHING_RELEASES.md.
 MARKETING_VERSION = 1.0.0
 // App Store Connect upload counter; increment independently from marketing version.
-CURRENT_PROJECT_VERSION = 1
+CURRENT_PROJECT_VERSION = 2
 DEPREMOLDU_BUNDLE_ID = org.depremoldu.app
 
 ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon

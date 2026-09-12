@@ -8,7 +8,7 @@ Bu belge App Store Connect formuna kopyala-yapıştır içindir. Ekran görünt�
 - Bundle ID: `org.depremoldu.app`
 - Sürüm: `1.0.0`; seçilecek build: **1.0.0 (1)**
 - Birincil dil: Türkçe
-- Kategori: **Hava Durumu (Weather)**; ikincil: **Referans** (isteğe bağlı)
+- Kategori: **Haberler (News)**; ikincil: **Referans (Reference)**. (Hava Durumu uygun değil.)
 - Fiyat: Ücretsiz
 - Yaş derecelendirmesi: **4+**
 - Telif: `© 2026 depremoldu.org`
@@ -17,7 +17,7 @@ Bu belge App Store Connect formuna kopyala-yapıştır içindir. Ekran görünt�
 
 - Destek URL'si: `https://www.depremoldu.org`
 - Pazarlama URL'si: `https://www.depremoldu.org`
-- Gizlilik Politikası URL'si: **ZORUNLU** — henüz yok. Öneri: `https://www.depremoldu.org/gizlilik` sayfası eklenip bu adres verilir (web reposunda ayrı iş). Metin önerisi aşağıda.
+- Gizlilik Politikası URL'si: `https://depremoldu.org/gizlilik` (yayında).
 
 ## Metinler
 
@@ -69,7 +69,7 @@ Veriler Boğaziçi Üniversitesi Kandilli Rasathanesi ve Deprem Araştırma Enst
 Uygulama hesap/oturum gerektirmez. Açılışta son depremler listesi otomatik yüklenir; harita sekmesinde fay hattı katmanı test edilebilir. Veriler Kandilli Rasathanesi'nden açık API aracılığıyla alınır (http://www.koeri.boun.edu.tr ve https://api.orhanaydogdu.com.tr). Uygulama resmî uyarı sistemi değildir.
 ```
 
-## Gizlilik Politikası metin önerisi (web'de yayınlanacak)
+## Gizlilik Politikası (yayınlanan sayfanın kaynağı)
 
 ```
 Deprem Oldu uygulaması hiçbir kişisel veri toplamaz, saklamaz veya paylaşmaz. Hesap oluşturma, izleme (tracking), reklam ve analitik SDK'sı yoktur. Konum izni istenmez.
@@ -81,10 +81,15 @@ Harici bağlantılar (AFAD, Evrim Ağacı, YouTube, MTA) yalnız siz dokunduğun
 Sorular için: bedir@proton.me
 ```
 
+## Açık kaynak
+
+- iOS deposu herkese açıktır: `https://github.com/bedirdemir/depremoldu-ios` (MIT; veri/font atıfları `docs/ASSET_PROVENANCE.md`).
+- Uygulamadaki "GitHub" bağlantısı bu depoya gider.
+
 ## Gönderim akışı (App Store Connect)
 
 1. Uygulama → **Distribution** sekmesi → `1.0.0` sürümünü hazırla.
-2. Build olarak **1.0.0 (1)** seç (TestFlight'ta processing tamamlanmış olmalı).
+2. Build olarak **1.0.0 (2)** seç (TestFlight'ta processing tamamlanmış olmalı).
 3. Yukarıdaki metadata, URL'ler ve ekran görüntülerini gir.
 4. App Privacy → Data Not Collected; yaş derecelendirmesi anketini doldur.
 5. Ihracat uyumluluğu: uygulama özel şifreleme içermediği için (`ITSAppUsesNonExemptEncryption = NO`) soru gelmez.
