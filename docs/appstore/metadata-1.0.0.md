@@ -1,12 +1,12 @@
 # App Store Metadata — 1.0.0
 
-Bu belge App Store Connect formuna kopyala-yapıştır içindir. Ekran görüntüleri: `docs/appstore/screenshots/` (1320×2868, 6.9" iPhone).
+Bu belge App Store Connect formuna kopyala-yapıştır içindir. Ekran görüntüleri: `docs/appstore/screenshots-65/` (1284×2778, 6.5") ve `docs/appstore/screenshots/` (1320×2868, 6.9").
 
 ## Kimlik
 
 - App Store adı: Kayıtta seçtiğin ad (ör. "Deprem Oldu: Son Depremler"); cihazdaki görünen ad "Deprem Oldu".
 - Bundle ID: `org.depremoldu.app`
-- Sürüm: `1.0.0`; seçilecek build: **1.0.0 (1)**
+- Sürüm: `1.0.0`; seçilecek build: **1.0.0 (2)**
 - Birincil dil: Türkçe
 - Kategori: **Haberler (News)**; ikincil: **Referans (Reference)**. (Hava Durumu uygun değil.)
 - Fiyat: Ücretsiz
@@ -15,8 +15,8 @@ Bu belge App Store Connect formuna kopyala-yapıştır içindir. Ekran görünt�
 
 ## URL'ler
 
-- Destek URL'si: `https://www.depremoldu.org`
-- Pazarlama URL'si: `https://www.depremoldu.org`
+- Destek URL'si: `https://depremoldu.org`
+- Pazarlama URL'si: `https://depremoldu.org`
 - Gizlilik Politikası URL'si: `https://depremoldu.org/gizlilik` (yayında).
 
 ## Metinler
@@ -24,7 +24,7 @@ Bu belge App Store Connect formuna kopyala-yapıştır içindir. Ekran görünt�
 **Alt başlık (30 karakter):** `Son depremler ve fay haritası`
 
 **Promosyon metni (170 karakter):**
-`Kandilli verileriyle Türkiye'deki son depremleri listeleyin; 500 depremi haritada görün, GINRAS diri fay hatlarını katman olarak açın ve deprem bilincine yönelik içeriklere göz atın.`
+`Kandilli verileriyle son depremleri listeleyin; 500 depremi haritada görün, GINRAS diri fay hatlarını katman olarak açın ve afet bilinci içeriklerine göz atın.`
 
 **Açıklama:**
 ```
@@ -33,7 +33,7 @@ Deprem Oldu, Türkiye'deki son depremleri Kandilli Rasathanesi (KOERI) verileriy
 • SON DEPREMLER: Büyüklük sınıfına göre renklendirilmiş liste; büyüklük, derinlik, tarih ve göreli zaman bilgileri. Aşağı çekerek yenileyin.
 • DEPREM HARİTASI: Son 500 depremi büyüklüklerine göre boyutlandırılmış işaretlerle görün. Dilerseniz GINRAS/AFEAD diri fay hattı katmanını açın; faylar güven ve aktivite oranına göre renklendirilir.
 • DEPREM KONUMU: Her deprem için harita üzerinde konum ve detay kartı.
-• AFET BİLİNCİ: Deprem anında/öncesinde yapılması gerekenler, çök-kapan-tutun, deprem çantası, tsunami ve deprem çantası gibi konularda seçilmiş içerikler.
+• AFET BİLİNCİ: Deprem anında/öncesinde yapılması gerekenler, çök-kapan-tutun, deprem çantası, tsunami ve ilk yardım gibi konularda seçilmiş içerikler.
 
 Notlar:
 - Uygulama backend kullanmaz; veriler cihazınızdan doğrudan sağlayıcıya istek yapılarak alınır ve cihazınızda önbelleğe alınır.
@@ -46,10 +46,26 @@ Veriler Boğaziçi Üniversitesi Kandilli Rasathanesi ve Deprem Araştırma Enst
 **Anahtar kelimeler (100 karakter):**
 `deprem,son depremler,deprem haritası,kandilli,fay hattı,afet,tsunami,sismik,deprem oldu`
 
+**Sürüm notları (What's New):**
+```
+İlk sürüm. Son depremler listesi (Kandilli/KOERI), haritada son 500 deprem, GINRAS/AFEAD diri fay hattı katmanı, deprem konumu detay kartı ve afet bilinci içerikleri.
+```
+
 ## App Privacy
 
 - Veri toplama: **Data Not Collected** (hesap yok, analytics yok, konum istenmez, reklam kimliği yok).
 - İzleme (tracking): **Hayır**.
+
+## İçerik hakları (üçüncü taraf içerik)
+
+- ASC sorusu: "Does your app contain, show, or access third-party content?" → **Evet** (hak sahipliği onaylanır). Deprem verisi Kandilli/KOERI'den açık API ile, fay verisi GINRAS/AFEAD (2018); atıflar uygulama içinde ve mağaza açıklamasında yer alır.
+
+## App Review iletişim bilgileri (form alanları)
+
+- Ad Soyad: (kendi adın)
+- Telefon: (kendi numaran)
+- E-posta: `bedir@proton.me`
+- Demo hesap: gerekmez (uygulama girişsiz çalışır).
 
 ## Yaş derecelendirmesi anketi
 
