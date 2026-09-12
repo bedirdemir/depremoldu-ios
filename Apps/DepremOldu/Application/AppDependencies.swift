@@ -67,7 +67,9 @@ extension AppDependencies {
     static func testing() -> AppDependencies {
         let arguments = ProcessInfo.processInfo.arguments
         let repository: any EarthquakeRepositoryProviding
-        if arguments.contains("-depremoldu-ui-failure") {
+        if arguments.contains("-depremoldu-ui-live") {
+            repository = liveRepository()
+        } else if arguments.contains("-depremoldu-ui-failure") {
             repository = UnavailableEarthquakeRepository()
         } else if arguments.contains("-depremoldu-ui-empty") {
             repository = StaticEarthquakeRepository(
