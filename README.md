@@ -75,6 +75,10 @@ Bundle ID: `org.depremoldu.app`.
 
 AI çalışma dalı, kod, test, doküman ve commit hazırlayabilir. PR açma, review, onay ve merge insana aittir. Ayrıntı: [Branching ve sürümleme](docs/BRANCHING_RELEASES.md).
 
+## Lisans
+
+Yazılım kodu [MIT](LICENSE) lisanslıdır. Üçüncü taraf veri ve fontların kaynak/atıf koşulları `docs/ASSET_PROVENANCE.md` içindedir.
+
 ## Veri kaynakları ve sorumluluk
 
 Deprem verileri Boğaziçi Üniversitesi Kandilli Rasathanesi ve Deprem Araştırma Enstitüsü (KOERI) kaynaklıdır ve `api.orhanaydogdu.com.tr` aracılığıyla sunulur. Fay hattı verisi GINRAS/AFEAD 2018 veri setinden türetilmiştir. Uygulama resmî bir deprem uyarı sistemi değildir; veriler bilgilendirme amaçlıdır.

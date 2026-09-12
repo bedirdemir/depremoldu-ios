@@ -6,6 +6,11 @@ Bu dosya formatı [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) temel
 
 ### Changed
 
+- Depo açık kaynak olarak yayınlandı; uygulamadaki GitHub bağlantısı `github.com/bedirdemir/depremoldu-ios` adresine yönlendirildi. TestFlight build numarası 2'ye yükseltildi.
+- Web sitesine `depremoldu.org/gizlilik` gizlilik politikası sayfası eklendi.
+
+### Changed
+
 - Uygulama, ürün ikonu (`depremolduappicon.png`) ve çizgi markası (brand-mark SVG'den üretilen raster template) ile güncellendi; marka üst başlıkta ve "Son Depremler" sekmesinde kullanılıyor. Aynı ikon Android portunda da kullanılacak.
 - Uygulama yalnızca açık modda çalışır; sistem koyu modda da açık palet korunur (`UIUserInterfaceStyle = Light`).
 - Üst şerit, sekme geçişlerinde animasyonsuz sabit bir başlığa dönüştürüldü; `depremoldu.org` solda, Yenile yalnız veri sekmelerinde. Yenile sırasında düğmede spinner görünür ve istek uçuşta çoklanmaz.

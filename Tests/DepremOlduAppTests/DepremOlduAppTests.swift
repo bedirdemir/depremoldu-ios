@@ -410,6 +410,7 @@ struct AboutLinksTests {
         #expect(AboutLinks.depremAPI.host == "api.orhanaydogdu.com.tr")
         #expect(AboutLinks.developerWebsite.absoluteString == "https://bedirdemir.com")
         #expect(AboutLinks.repository.host == "github.com")
+        #expect(AboutLinks.repository.path == "/bedirdemir/depremoldu-ios")
     }
 }
 

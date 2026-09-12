@@ -6,5 +6,5 @@ enum AboutLinks {
     static let website = URL(string: "https://www.depremoldu.org")!
     static let depremAPI = URL(string: "https://api.orhanaydogdu.com.tr/deprem/api-docs/")!
     static let developerWebsite = URL(string: "https://bedirdemir.com")!
-    static let repository = URL(string: "https://github.com/bedirdemir/depremolduorg-nuxtjs")!
+    static let repository = URL(string: "https://github.com/bedirdemir/depremoldu-ios")!
 }
