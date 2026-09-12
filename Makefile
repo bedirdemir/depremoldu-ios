@@ -62,6 +62,8 @@ prepare-ui-test-simulator:
 
 ui-test: prepare-ui-test-simulator
 	rm -rf '$(UI_RESULT_BUNDLE)'
+	rm -rf $(DERIVED_DATA)/Build/Products/Test-iphonesimulator/DepremOlduAppUITests-Runner.app
+	rm -rf $(DERIVED_DATA)/Build/Products/Test-iphonesimulator/DepremOlduAppUITests.xctest
 	xcodebuild test -quiet \
 		-project $(PROJECT) \
 		-scheme DepremOldu-Test \
@@ -79,6 +81,8 @@ ui-test-selected:
 	fi
 	$(MAKE) prepare-ui-test-simulator
 	rm -rf test-results/DepremOlduUISelectedTests.xcresult
+	rm -rf $(DERIVED_DATA)/Build/Products/Test-iphonesimulator/DepremOlduAppUITests-Runner.app
+	rm -rf $(DERIVED_DATA)/Build/Products/Test-iphonesimulator/DepremOlduAppUITests.xctest
 	xcodebuild test -quiet \
 		-project $(PROJECT) \
 		-scheme DepremOldu-Test \
