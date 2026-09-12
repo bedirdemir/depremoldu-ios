@@ -10,6 +10,8 @@
 | [ROADMAP](ROADMAP.md) | Fazlar ve açık ürün soruları |
 | [ASSET_PROVENANCE](ASSET_PROVENANCE.md) | Varlık kaynakları, lisanslar |
 | [APPLE_RELEASE_GUIDE](APPLE_RELEASE_GUIDE.md) | TestFlight ve App Store akışı |
+| [appstore/](appstore/) | App Store metadata, ekran görüntüleri ve gönderim adımları |
+| [releases/](releases/) | TestFlight upload kayıtları |
 | [parity/WEB_PARITY_CHECKLIST](parity/WEB_PARITY_CHECKLIST.md) | Testlerin kilitlediği parite değerleri |
 | [adr/](adr/) | Mimari karar kayıtları |
 | [checklists/](checklists/) | Tamamlanma, cihaz kabulü ve yayın kontrol listeleri |

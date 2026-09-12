@@ -36,18 +36,43 @@ struct EarthquakeListView: View {
                 Task { await model.retry() }
             }
         } else {
-            ProgressView()
-                .controlSize(.large)
-                .tint(AppColor.primary)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color(uiColor: .systemBackground))
-                .accessibilityLabel("Depremler yükleniyor")
+            VStack(spacing: 0) {
+                EarthquakeLegendBar()
+                list
+            }
+            .background(Color(uiColor: .systemBackground))
+        }
+    }
+
+    private var showsTopLoadingIndicator: Bool {
+        switch model.state {
+        case .loading:
+            true
+        case let .content(content):
+            content.refreshState == .refreshing && content.freshness == .stale
+        case .idle, .failure:
+            false
         }
     }
 
     private var list: some View {
         let earthquakes = model.listEarthquakes
         return List {
+            if showsTopLoadingIndicator {
+                HStack {
+                    Spacer()
+                    ProgressView()
+                        .controlSize(.regular)
+                        .tint(AppColor.primary)
+                    Spacer()
+                }
+                .listRowInsets(EdgeInsets())
+                .listRowSeparator(.hidden)
+                .padding(.vertical, 14)
+                .accessibilityIdentifier("earthquake.top-loading")
+                .accessibilityLabel("Depremler yükleniyor")
+            }
+
             ForEach(Array(earthquakes.enumerated()), id: \.element.id) { index, earthquake in
                 EarthquakeRowView(
                     earthquake: earthquake,
@@ -57,15 +82,17 @@ struct EarthquakeListView: View {
                 )
             }
 
-            Section {
-                EmptyView()
-            } footer: {
-                Text(model.countSummary)
-                    .font(AppFont.regular(12, relativeTo: .caption))
-                    .foregroundStyle(.secondary)
-                    .padding(.vertical, 8)
-                    .padding(.leading, 4)
-                    .accessibilityIdentifier("earthquake.count")
+            if model.content != nil {
+                Section {
+                    EmptyView()
+                } footer: {
+                    Text(model.countSummary)
+                        .font(AppFont.regular(12, relativeTo: .caption))
+                        .foregroundStyle(.secondary)
+                        .padding(.vertical, 8)
+                        .padding(.leading, 4)
+                        .accessibilityIdentifier("earthquake.count")
+                }
             }
         }
         .listStyle(.plain)
