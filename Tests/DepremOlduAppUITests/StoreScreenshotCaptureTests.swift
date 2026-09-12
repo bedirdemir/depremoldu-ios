@@ -16,6 +16,24 @@ final class StoreScreenshotCaptureTests: XCTestCase {
         add(attachment)
     }
 
+    private func listRow(in app: XCUIApplication) -> XCUIElement {
+        app.buttons.matching(
+            NSPredicate(format: "identifier BEGINSWITH 'earthquake.row.'")
+        ).firstMatch
+    }
+
+    @discardableResult
+    private func openListWithRetry(_ app: XCUIApplication) -> XCUIElement {
+        let row = listRow(in: app)
+        for attempt in 0..<4 where !row.exists {
+            if attempt > 0 {
+                app.tabBars.buttons["Son Depremler"].tap()
+            }
+            _ = row.waitForExistence(timeout: 15)
+        }
+        return row
+    }
+
     func testCaptureStoreScreenshots() throws {
         try XCTSkipUnless(
             ProcessInfo.processInfo.environment["CAPTURE_STORE_SCREENSHOTS"] == "1",
@@ -25,9 +43,7 @@ final class StoreScreenshotCaptureTests: XCTestCase {
         app.launchArguments = ["-depremoldu-ui-live"]
         app.launch()
 
-        let firstRow = app.buttons.matching(
-            NSPredicate(format: "identifier BEGINSWITH 'earthquake.row.'")
-        ).firstMatch
+        let firstRow = listRow(in: app)
         XCTAssertTrue(firstRow.waitForExistence(timeout: 45))
         sleep(2)
         capture(app, "01-list")
@@ -46,23 +62,29 @@ final class StoreScreenshotCaptureTests: XCTestCase {
         capture(app, "02-map-faults")
 
         app.tabBars.buttons["Son Depremler"].tap()
-        let listRow = app.buttons.matching(
-            NSPredicate(format: "identifier BEGINSWITH 'earthquake.row.'")
-        ).firstMatch
-        XCTAssertTrue(listRow.waitForExistence(timeout: 15))
-        listRow.tap()
+        let row = openListWithRetry(app)
+        XCTAssertTrue(row.exists, "Liste satırları yüklenemedi")
+        row.tap()
         XCTAssertTrue(app.navigationBars["Deprem Konumu"].waitForExistence(timeout: 10))
         sleep(15)
         capture(app, "03-location")
         app.buttons["Kapat"].tap()
+        XCTAssertTrue(
+            app.navigationBars["Deprem Konumu"].waitForNonExistence(timeout: 15),
+            "Deprem Konumu sheet'i kapanmadı"
+        )
 
         app.tabBars.buttons["Afet Bilinci"].tap()
-        sleep(2)
+        sleep(3)
         capture(app, "04-awareness")
 
         app.tabBars.buttons["Son Depremler"].tap()
+        XCTAssertTrue(app.buttons["Hakkında"].waitForExistence(timeout: 15))
         app.buttons["Hakkında"].tap()
-        _ = app.navigationBars["Hakkında"].waitForExistence(timeout: 20)
+        XCTAssertTrue(
+            app.navigationBars["Hakkında"].waitForExistence(timeout: 20),
+            "Hakkında ekranı açılmadı"
+        )
         sleep(1)
         capture(app, "05-about")
     }
