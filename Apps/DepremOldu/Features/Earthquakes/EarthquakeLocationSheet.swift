@@ -97,7 +97,8 @@ struct EarthquakeLocationSheet: View {
                 Text(earthquake.scale)
                     .font(AppFont.regular(11, relativeTo: .caption2))
             }
-            .frame(width: 68, height: 92)
+            .frame(width: 68)
+            .frame(minHeight: 92, maxHeight: .infinity)
             .background(palette.badgeBackground)
             .foregroundStyle(palette.badgeForeground)
             .clipShape(RoundedRectangle(cornerRadius: 3, style: .continuous))
@@ -131,10 +132,10 @@ struct EarthquakeLocationSheet: View {
     private func detailRow(label: String, value: String) -> some View {
         HStack(alignment: .firstTextBaseline, spacing: 4) {
             Text("\(label):")
-                .font(AppFont.semiBold(13, relativeTo: .footnote))
+                .font(AppFont.semiBold(15, relativeTo: .subheadline))
                 .foregroundStyle(.primary)
             Text(value)
-                .font(AppFont.regular(13, relativeTo: .footnote))
+                .font(AppFont.regular(15, relativeTo: .subheadline))
                 .foregroundStyle(.secondary)
         }
     }
