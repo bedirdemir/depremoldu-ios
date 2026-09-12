@@ -53,37 +53,6 @@ struct AppRootView: View {
             BrandTitle()
             Spacer(minLength: 0)
 
-            if model.selectedTab != .awareness {
-                Button {
-                    guard !isRefreshing else { return }
-                    Task { await model.feedModel.refresh() }
-                } label: {
-                    HStack(spacing: 5) {
-                        if isRefreshing {
-                            ProgressView()
-                                .controlSize(.small)
-                                .tint(AppColor.primary)
-                        } else {
-                            Image(systemName: "arrow.clockwise")
-                                .font(.system(size: 12, weight: .semibold))
-                        }
-                        Text("Yenile")
-                            .font(AppFont.medium(13, relativeTo: .footnote))
-                    }
-                    .foregroundStyle(AppColor.primary)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 6)
-                    .background(AppColor.primary.opacity(0.06))
-                    .clipShape(Capsule())
-                    .overlay(
-                        Capsule()
-                            .stroke(AppColor.primary.opacity(0.25), lineWidth: 1)
-                    )
-                }
-                .buttonStyle(.plain)
-                .accessibilityIdentifier("toolbar.refresh")
-            }
-
             Button {
                 model.isAboutPresented = true
             } label: {
@@ -102,9 +71,6 @@ struct AppRootView: View {
         .background(Color(uiColor: .systemBackground))
     }
 
-    private var isRefreshing: Bool {
-        model.feedModel.content?.refreshState == .refreshing
-    }
 }
 
 struct BrandTitle: View {

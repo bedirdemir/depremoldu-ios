@@ -13,7 +13,7 @@ Kaynak ürün: `depremolduorg-nuxtjs` (Nuxt 4 + Vue 3 + Pinia + Tailwind). Web �
 | Göreli zaman (dayjs `tr`) | `TurkishRelativeTimeFormatter`, 30 sn tick | Uygulandı |
 | Tarih-saat, derinlik, "Konumu görüntüle" | Aynı bilgi satırları; satır tamamı dokunulabilir | Uygulandı |
 | "X-Y / N deprem" sayacı | Liste sonunda sade sayaç (`200 deprem`) | Uygulandı |
-| "Yenile" butonu | Toolbar butonu + pull-to-refresh | Uygulandı |
+| "Yenile" butonu | Yalnız pull-to-refresh; açılış/yeniden doğrulamada üstte yükleme göstergesi | Uygulandı |
 | Konum modalı (Leaflet + pin) | MapKit sheet'i + bilgi kartı | Uygulandı |
 | Footer atıf ve GitHub bağlantısı | Liste altı sadeleştirildi; atıf/bağlantılar Hakkında ekranında | Uygulandı |
 | 15 sn bellek/localStorage cache | 15 sn fresh + 24 saat stale disk cache | Uygulandı (ADR-0005) |
