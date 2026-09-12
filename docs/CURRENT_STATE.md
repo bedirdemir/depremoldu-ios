@@ -21,7 +21,8 @@ Fiziksel kabul öncesi ürün geri bildirimleri uygulandı: yalnız açık mod, 
 
 ## TestFlight (internal) kaydı
 
-- 2026-09-12: `1.0.0` (build 1), `test` @ `7a486a9` kaynağından App Store Connect'e yüklendi; paket processing. Ayrıntı: [docs/releases/1.0.0-testflight.md](releases/1.0.0-testflight.md). App Store incelemesine gönderim yapılmadı; `main` promotion'ı TestFlight kabulünden sonra.
+- 2026-09-12: `1.0.0` (build 1), `test` @ `7a486a9` kaynağından App Store Connect'e yüklendi; paket processing. Ayrıntı: [docs/releases/1.0.0-testflight.md](releases/1.0.0-testflight.md).
+- 2026-09-12: Ürün sahibi internal TestFlight kabulünü verdi (sorun yok). `test -> main` promotion ve `v1.0.0` tag yapıldı; App Store gönderimi için metadata/ekran görüntüleri hazır: [docs/appstore/metadata-1.0.0.md](appstore/metadata-1.0.0.md). Gizlilik politikası URL'si ve App Store Connect formu kullanıcı adımıdır.
 
 ## Bekleyen insan kabulü
 
