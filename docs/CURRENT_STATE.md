@@ -19,6 +19,10 @@ Son güncelleme: 2026-09-12
 
 Fiziksel kabul öncesi ürün geri bildirimleri uygulandı: yalnız açık mod, sabit/sol hizalı başlık, ürün ikonu ve marka çizgisi, native sürekli liste (sayfalama kaldırıldı), tam genişlik divider ve sıkı satırlar, nokta üstü map popup'ı, Yenile düğmesinin kaldırılıp açılış yükleme göstergesinin eklenmesi, Hakkında metin/bağlantı güncellemeleri, içeriğe göre boyutlanan konum sheet'i ve son ince ayarlar. Ayrıntı: CHANGELOG `[Unreleased]`, ADR-0009 ve ADR-0010. Fiziksel cihaz turu bu revizyonla tekrarlanacaktır.
 
+## TestFlight (internal) kaydı
+
+- 2026-09-12: `1.0.0` (build 1), `test` @ `7a486a9` kaynağından App Store Connect'e yüklendi; paket processing. Ayrıntı: [docs/releases/1.0.0-testflight.md](releases/1.0.0-testflight.md). App Store incelemesine gönderim yapılmadı; `main` promotion'ı TestFlight kabulünden sonra.
+
 ## Bekleyen insan kabulü
 
 - Fiziksel iPhone'da canlı API akışı, çevrimdışı davranış, Dynamic Type ve VoiceOver turu.
