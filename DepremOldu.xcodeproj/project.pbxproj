@@ -37,6 +37,7 @@ CC148260F2B1FE316A573844 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBu
 130A2F1E80EF81EF87BCE308 /* Faults.json in Resources */ = {isa = PBXBuildFile; fileRef = B908F89242872436068CFADB /* Faults.json */; };
 4B7A1F0AC886B532CD4D1749 /* DepremOlduAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041C8778C301D526EF4E94AE /* DepremOlduAppTests.swift */; };
 681ADD4A3E42008D3100A1A0 /* DepremOlduAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B1AB0561C4D3EAB194726F /* DepremOlduAppUITests.swift */; };
+186F464AA553AB512750691C /* StoreScreenshotCaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEF39FD2FC83BFE95494B79 /* StoreScreenshotCaptureTests.swift */; };
 7458DFB62EB2227F505694BA /* DepremOlduDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 80770A7EBFE6C49750B0BD2A /* DepremOlduDomain */; };
 788E6BCA3318B941E6F19FBE /* DepremOlduFaults in Frameworks */ = {isa = PBXBuildFile; productRef = 8A069E8E8F833C4A8E48CD8B /* DepremOlduFaults */; };
 39B8CA71E825408EB49A2C86 /* DepremOlduNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = B8442C55CD0FC4CFF376001B /* DepremOlduNetworking */; };
@@ -102,6 +103,7 @@ B908F89242872436068CFADB /* Faults.json */ = {isa = PBXFileReference; lastKnownF
 9EED39E26E4269851FEDADB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 041C8778C301D526EF4E94AE /* DepremOlduAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepremOlduAppTests.swift; sourceTree = "<group>"; };
 92B1AB0561C4D3EAB194726F /* DepremOlduAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepremOlduAppUITests.swift; sourceTree = "<group>"; };
+AFEF39FD2FC83BFE95494B79 /* StoreScreenshotCaptureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreScreenshotCaptureTests.swift; sourceTree = "<group>"; };
 B825DD032B31B257BDDC16FA /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 30373D58AEEDA4A2131F96A0 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 FA71D9D812985025E7C53FC7 /* Local.example.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.example.xcconfig; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@ B7E2821AFC230A2C692849B3 /* DepremOlduAppUITests */ = {
 			isa = PBXGroup;
 			children = (
 				92B1AB0561C4D3EAB194726F,
+				AFEF39FD2FC83BFE95494B79,
 			);
 			path = DepremOlduAppUITests;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@ F74B1C69325F9D12514927C5 = {
 			buildActionMask = 2147483647;
 			files = (
 				681ADD4A3E42008D3100A1A0,
+				186F464AA553AB512750691C,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
