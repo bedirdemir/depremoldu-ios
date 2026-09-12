@@ -36,13 +36,13 @@ struct EarthquakeRowView: View {
                         infoLine(
                             systemImage: "calendar",
                             text: earthquake.displayDateTime,
-                            font: AppFont.regular(13, relativeTo: .footnote),
+                            font: AppFont.medium(13, relativeTo: .footnote),
                             muted: true
                         )
                         infoLine(
                             systemImage: "arrow.down",
                             text: "\(earthquake.formattedDepth) km",
-                            font: AppFont.regular(13, relativeTo: .footnote),
+                            font: AppFont.medium(13, relativeTo: .footnote),
                             muted: true
                         )
                         HStack(spacing: 4) {
@@ -87,7 +87,8 @@ struct EarthquakeRowView: View {
             Text(earthquake.scale)
                 .font(AppFont.regular(10, relativeTo: .caption2))
         }
-        .frame(width: 64, height: 96)
+        .frame(width: 64)
+        .frame(minHeight: 96, maxHeight: .infinity)
         .background(palette.badgeBackground)
         .foregroundStyle(palette.badgeForeground)
         .clipShape(RoundedRectangle(cornerRadius: 3, style: .continuous))

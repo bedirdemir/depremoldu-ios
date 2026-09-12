@@ -13,6 +13,8 @@ Bu dosya formatı [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) temel
 - Satır divider'ları soldan sağa tam genişlikte; satır arası dikey boşluk yarıya indirildi ve son olarak %10 artırıldı, sol boşluk azaltıldı, bölge adları ve büyüklük değerleri kalınlaştırıldı, legend ile liste arasında küçük bir boşluk bırakıldı. Arka plan renkleri web'deki soldan sağa gradient ile birebir aynıdır (accent %8.5 -> beyaz, 20%/90% durak).
 - Deprem konumu sheet'i tam ekran yerine içeriğe göre boyutlanan kısmi yükseklikte açılır (harita + bilgi kutusu); harita yüksekliği 300 pt'ye indirildi.
 - Afet Bilinci ekranının altındaki kapanış metni kaldırıldı; metin yalnız Hakkında ekranında kalır.
+- Liste satırlarındaki tarih ve derinlik satırları medium ağırlığa yükseltildi (yaşlı kullanıcılar için okunabilirlik); konum detayındaki tarih/derinlik/koordinat puntoları 15'e çıkarıldı.
+- Büyüklük rozeti hem listede hem konum kartında satır/kart yüksekliğini tamamen dolduruyor.
 - Haritada deprem seçimi noktanın üstünde popup olarak gösterilir; "Detay" bağlantısı yok. Koordinatlar kayan nokta artıklarından arındırıldı.
 - Liste altındaki atıf/bağlantı bloğu kaldırıldı; veri/API atıfları Hakkında'nın ilk bölümüne, API ve Geliştirici Web Sitesi (`bedirdemir.com`) bağlantıları Bağlantılar bölümüne taşındı. Afet Bilinci kapanış metni genişletildi ve Hakkında'ya eklendi.
 
