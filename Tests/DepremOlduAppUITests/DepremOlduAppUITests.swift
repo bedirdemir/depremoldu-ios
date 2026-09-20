@@ -113,7 +113,16 @@ final class DepremOlduAppUITests: XCTestCase {
         let app = launchApp()
 
         XCTAssertTrue(app.buttons["earthquake.row.ui-1"].waitForExistence(timeout: 10))
-        XCTAssertFalse(app.otherElements["earthquake.top-loading"].exists)
+        XCTAssertTrue(anyElement(app, "earthquake.top-loading").waitForNonExistence(timeout: 5))
+    }
+
+    func testSlowFirstLaunchShowsLoadingIndicator() {
+        let app = launchApp(arguments: ["-depremoldu-ui-slow"])
+
+        let indicator = anyElement(app, "earthquake.top-loading")
+        XCTAssertTrue(indicator.waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["earthquake.row.ui-1"].waitForExistence(timeout: 15))
+        XCTAssertTrue(indicator.waitForNonExistence(timeout: 5))
     }
 
     func testFailureStateOffersRetry() {
