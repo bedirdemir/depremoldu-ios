@@ -84,6 +84,20 @@ extension AppDependencies {
                     ),
                 ]
             )
+        } else if arguments.contains("-depremoldu-ui-slow") {
+            repository = SlowEarthquakeRepository(
+                events: [
+                    .value(
+                        EarthquakeRepositoryValue(
+                            earthquakes: UITestingEarthquakeFixtures.feed(),
+                            fetchedAt: Date(),
+                            source: .network,
+                            freshness: .fresh
+                        )
+                    ),
+                ],
+                delay: .seconds(3)
+            )
         } else {
             let count = arguments.contains("-depremoldu-ui-many") ? 120 : 8
             repository = StaticEarthquakeRepository(
@@ -100,6 +114,32 @@ extension AppDependencies {
             )
         }
         return makeDependencies(repository: repository)
+    }
+}
+
+struct SlowEarthquakeRepository: EarthquakeRepositoryProviding {
+    let events: [EarthquakeRepositoryEvent]
+    let delay: Duration
+
+    func events(
+        policy: EarthquakeLoadPolicy = .normal
+    ) -> AsyncThrowingStream<EarthquakeRepositoryEvent, any Error> {
+        let scripted = events
+        let delay = delay
+        return AsyncThrowingStream { continuation in
+            let task = Task {
+                try? await Task.sleep(for: delay)
+                guard !Task.isCancelled else {
+                    continuation.finish()
+                    return
+                }
+                for event in scripted {
+                    continuation.yield(event)
+                }
+                continuation.finish()
+            }
+            continuation.onTermination = { _ in task.cancel() }
+        }
     }
 }
 

@@ -5,6 +5,8 @@ struct EarthquakeListView: View {
     @Bindable var model: EarthquakeFeedFeatureModel
     let onShowLocation: (Earthquake) -> Void
 
+    @State private var isUserRefreshing = false
+
     var body: some View {
         screenContent
             .task {
@@ -20,24 +22,19 @@ struct EarthquakeListView: View {
 
     @ViewBuilder
     private var screenContent: some View {
-        if let content = model.content {
-            VStack(spacing: 0) {
-                EarthquakeLegendBar()
-                if let refreshFailure = content.refreshFailure {
-                    RefreshFailureBanner(failure: refreshFailure) {
-                        Task { await model.retry() }
-                    }
-                }
-                list
-            }
-            .background(Color(uiColor: .systemBackground))
-        } else if case let .failure(failure) = model.state {
+        if model.content == nil, case let .failure(failure) = model.state {
             ErrorStateView(failure: failure) {
                 Task { await model.retry() }
             }
         } else {
             VStack(spacing: 0) {
                 EarthquakeLegendBar()
+                if let refreshFailure = model.content?.refreshFailure {
+                    RefreshFailureBanner(failure: refreshFailure) {
+                        Task { await model.retry() }
+                    }
+                }
+                LoadingIndicatorBar(isVisible: showsLoadingRow)
                 list
             }
             .background(Color(uiColor: .systemBackground))
@@ -55,24 +52,13 @@ struct EarthquakeListView: View {
         }
     }
 
+    private var showsLoadingRow: Bool {
+        showsTopLoadingIndicator && !isUserRefreshing
+    }
+
     private var list: some View {
         let earthquakes = model.listEarthquakes
         return List {
-            if showsTopLoadingIndicator {
-                HStack {
-                    Spacer()
-                    ProgressView()
-                        .controlSize(.regular)
-                        .tint(AppColor.primary)
-                    Spacer()
-                }
-                .listRowInsets(EdgeInsets())
-                .listRowSeparator(.hidden)
-                .padding(.vertical, 14)
-                .accessibilityIdentifier("earthquake.top-loading")
-                .accessibilityLabel("Depremler yükleniyor")
-            }
-
             ForEach(Array(earthquakes.enumerated()), id: \.element.id) { index, earthquake in
                 EarthquakeRowView(
                     earthquake: earthquake,
@@ -99,7 +85,44 @@ struct EarthquakeListView: View {
         .environment(\.defaultMinListRowHeight, 0)
         .contentMargins(.top, 0, for: .scrollContent)
         .refreshable {
+            isUserRefreshing = true
             await model.refresh()
+            isUserRefreshing = false
         }
     }
+}
+
+private struct LoadingIndicatorBar: View {
+    let isVisible: Bool
+
+    @State private var showsIndicator = false
+
+    var body: some View {
+        HStack {
+            Spacer()
+            if showsIndicator {
+                ProgressView()
+                    .controlSize(.regular)
+                    .tint(nil)
+                    .transition(.opacity)
+                    .accessibilityIdentifier("earthquake.top-loading")
+                    .accessibilityLabel("Depremler yükleniyor")
+            }
+            Spacer()
+        }
+        .frame(height: showsIndicator ? 48 : 0)
+        .clipped()
+        .onAppear {
+            withAnimation(Self.animation) {
+                showsIndicator = isVisible
+            }
+        }
+        .onChange(of: isVisible) { _, newValue in
+            withAnimation(Self.animation) {
+                showsIndicator = newValue
+            }
+        }
+    }
+
+    private static let animation = Animation.spring(response: 0.45, dampingFraction: 0.88)
 }
