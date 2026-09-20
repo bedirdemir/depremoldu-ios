@@ -25,6 +25,12 @@ Bu dosya formatı [Keep a Changelog](https://keepachangelog.com/tr/1.1.0/) temel
 - Haritada deprem seçimi noktanın üstünde popup olarak gösterilir; "Detay" bağlantısı yok. Koordinatlar kayan nokta artıklarından arındırıldı.
 - Liste altındaki atıf/bağlantı bloğu kaldırıldı; veri/API atıfları Hakkında'nın ilk bölümüne, API ve Geliştirici Web Sitesi (`bedirdemir.com`) bağlantıları Bağlantılar bölümüne taşındı. Afet Bilinci kapanış metni genişletildi ve Hakkında'ya eklendi.
 
+## [1.0.1] - 2026-09-21
+
+### Changed
+
+- Açılış ve arka plan yeniden doğrulama yükleme göstergesi marka kırmızısı yerine küçük, sistem varsayılan renkli bir `ProgressView` göstergesi olarak gösteriliyor; gösterge yumuşak yay animasyonuyla açılıp kapanıyor ve yükleme bitince liste içeriği yukarı kayarak yerleşiyor.
+
 ## [1.0.0] - 2026-09-12
 
 ### Added
