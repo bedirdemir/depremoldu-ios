@@ -1,23 +1,27 @@
 # Güncel Durum
 
-Son güncelleme: 2026-09-12
+Son güncelleme: 2026-09-21
 
 ## Faz
 
 - Faz 1 (temel + sürüm 1.0.0 kapsamı): **Uygulandı** — liste, harita, fay katmanı, Afet Bilinci, Hakkında, yerel cache/retry, testler ve dokümantasyon.
-- Faz 2 (fiziksel cihaz kabulü): **Bekliyor** — ürün sahibi cihaz turu.
+- Faz 2 (fiziksel cihaz kabulü): **Büyük ölçüde tamam** — 1.0.0 App Store'da yayında; 1.0.1 yükleme animasyonu için ürün sahibi cihaz turu bekleniyor.
 - Depo ve release kaydı: `github.com/bedirdemir/depremoldu-ios` (private); `main`/`test`/`dev` dalları ve PR akışı kuruldu; PR #1 (`dev -> test`) ve PR #2 (`test -> main`) merge edildi; `main` üzerinde annotated `v1.0.0` tag'i var. Tüm dallarda branch protection (PR zorunlu, force push/deletion kapalı) etkin.
 
 ## Doğrulananlar
 
-- `make verify-iteration`: version-check, project-check, paket testleri (56), Development build, app unit testleri (14).
-- `make verify`: ek olarak Release build ve UI suite (8 test).
+- `make verify-iteration`: version-check, project-check, paket testleri (57), Development build, app unit testleri (17).
+- `make verify`: ek olarak Release build ve UI suite (11 test + 1 mağaza ekran görüntüsü skip).
 - Simulator görsel doğrulaması: liste, konum sheet'i, harita, fay katmanı, Afet Bilinci, Hakkında.
 - Gömülü `Faults.json`: 5693 fay çizgisi, 46328 nokta (GINRAS/AFEAD 2018) — web `public/FaultData` KMZ dosyalarından script ile üretildi.
 
 ## Kabul revizyonu (2026-09-12)
 
 Fiziksel kabul öncesi ürün geri bildirimleri uygulandı: yalnız açık mod, sabit/sol hizalı başlık, ürün ikonu ve marka çizgisi, native sürekli liste (sayfalama kaldırıldı), tam genişlik divider ve sıkı satırlar, nokta üstü map popup'ı, Yenile düğmesinin kaldırılıp açılış yükleme göstergesinin eklenmesi, Hakkında metin/bağlantı güncellemeleri, içeriğe göre boyutlanan konum sheet'i ve son ince ayarlar. Ayrıntı: CHANGELOG `[Unreleased]`, ADR-0009 ve ADR-0010. Fiziksel cihaz turu bu revizyonla tekrarlanacaktır.
+
+## App Store güncelleme kaydı
+
+- 2026-09-21: `1.0.1` (3) güncelleme build'i App Store Connect'e yüklendi (`Upload succeeded`); TestFlight turu atlandı. Kaynak: yerel `fix/system-loading-indicator` çalışma ağacı; değişiklik, açılış/yenileme yükleme göstergesinin sistem varsayılan renkli ve yumuşak animasyonlu hale getirilmesi. Ayrıntı: [docs/releases/1.0.1-app-store.md](releases/1.0.1-app-store.md). Ürün sahibi adımı: App Store Connect'te 1.0.1 sürümü + build 3 + "What's New" ile incelemeye gönderme.
 
 ## TestFlight (internal) kaydı
 
@@ -27,9 +31,8 @@ Fiziksel kabul öncesi ürün geri bildirimleri uygulandı: yalnız açık mod, 
 
 ## Bekleyen insan kabulü
 
-- Fiziksel iPhone'da canlı API akışı, çevrimdışı davranış, Dynamic Type ve VoiceOver turu.
-- App Store Connect'te bundle ID kaydı, TestFlight upload ve ekran görüntüleri.
-- `test` -> `main` promotion ve `v1.0.0` tag.
+- Fiziksel cihazda 1.0.1 yükleme göstergesi animasyonu.
+- App Store Connect'te 1.0.1 sürümünü oluşturup build 3'ü ekleme ve incelemeye gönderme.
 
 ## Not Run / açık riskler
 
@@ -40,7 +43,6 @@ Fiziksel kabul öncesi ürün geri bildirimleri uygulandı: yalnız açık mod, 
 
 ## Sıradaki adımlar
 
-1. Fiziksel cihaz kabul turu ve düzeltmeleri.
-2. TestFlight iç test upload'ı.
-3. App Store metadata, gizlilik formu ve ekran görüntüleri.
-4. `depremoldu-android` deposunun bu depodaki domain/presentation sözleşmelerinden başlatılması.
+1. App Store Connect'te 1.0.1 sürümü + build 3 + "What's New" ile incelemeye gönderme.
+2. Fiziksel cihazda 1.0.1 animasyon kabulü.
+3. `depremoldu-android` deposunun bu depodaki domain/presentation sözleşmelerinden başlatılması.
