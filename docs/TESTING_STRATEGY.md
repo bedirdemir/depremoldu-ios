@@ -15,7 +15,7 @@
 
 - Ağ erişimi yalnız fiziksel cihaz kabulündedir; testlerde gerçek internet kullanılmaz.
 - Saat, saat dilimi ve jitter enjekte edilir (`DateProviding`, `EarthquakeRetrySleeping`, `EarthquakeRetryJitterProviding`).
-- UI testleri Test yapılandırmasında sabit fixture'larla çalışır; `-depremoldu-ui-failure` ve `-depremoldu-ui-empty` launch argümanları hata/boş durumu tetikler, `-depremoldu-ui-live` yalnız mağaza ekran görüntüsü üretimi için canlı veri kullanır. Bu yollar `#if TESTING` içindedir; Release build'de yoktur.
+- UI testleri Test yapılandırmasında sabit fixture'larla çalışır; `-depremoldu-ui-failure` ve `-depremoldu-ui-empty` launch argümanları hata/boş durumu tetikler, `-depremoldu-ui-slow` ilk yükleme göstergesini deterministik gözlemlemek için gecikmeli veri üretir, `-depremoldu-ui-live` yalnız mağaza ekran görüntüsü üretimi için canlı veri kullanır. Bu yollar `#if TESTING` içindedir; Release build'de yoktur.
 - Fixture'lar gerçek sağlayıcı yanıtından türetilir ve şema değişikliğinde birlikte güncellenir.
 
 ## Komutlar
